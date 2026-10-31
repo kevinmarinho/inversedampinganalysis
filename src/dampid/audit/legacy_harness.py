@@ -70,7 +70,7 @@ def _hermite(xi: np.ndarray, L: float):
     return psi, dpsi, ddpsi
 
 
-def _legacy_element(E, A, Iy, Iz, G, L, r, J):
+def _legacy_element(E, A, Iy, Iz, G, L, r, J, rotary: str = "legacy"):
     """Numerical reproduction of the ``k`` and ``m`` expressions of ``matrixes()``.
 
     Local DOF order (per element, 12): [u1, v1, v1', w1, w1', t1, u2, v2, v2', w2, w2', t2].
@@ -78,13 +78,16 @@ def _legacy_element(E, A, Iy, Iz, G, L, r, J):
       * ``phi = [x/L, 1 - x/L]`` (node order reversed; harmless, see audit notebook 05);
       * torsional stiffness ``G*J`` with ``J = Iy + Iz`` passed by the caller (finding I3);
       * "rotary inertia" ``r*Iz*int(Nv Nv^T)`` / ``r*Iy*int(Nw Nw^T)`` (finding I4).
+
+    ``rotary`` only exists for the audit comparison: "legacy" (default, as the code),
+    "correct" (r*I*int(N' N'^T), the Rayleigh-beam term) or "none".
     """
     x = 0.5 * L * (_GAUSS_X + 1.0)
     w = 0.5 * L * _GAUSS_W
     xi = x / L
     phi = np.array([xi, 1 - xi])
     dphi = np.array([np.full_like(xi, 1 / L), np.full_like(xi, -1 / L)])
-    psi, _, ddpsi = _hermite(xi, L)
+    psi, dpsi, ddpsi = _hermite(xi, L)
     n = len(x)
 
     def vec(entries):
@@ -106,14 +109,15 @@ def _legacy_element(E, A, Iy, Iz, G, L, r, J):
         return (a * w) @ b.T
 
     k = E * A * integ(Bn, Bn) + E * Iy * integ(Bw, Bw) + E * Iz * integ(Bv, Bv) + G * J * integ(Bt, Bt)
-    m = (
-        r * A * integ(Nu, Nu)
-        + r * A * integ(Nv, Nv)
-        + r * A * integ(Nw, Nw)
-        + r * Iz * integ(Nv, Nv)
-        + r * Iy * integ(Nw, Nw)
-        + r * J * integ(Nt, Nt)
-    )
+    m = r * A * integ(Nu, Nu) + r * A * integ(Nv, Nv) + r * A * integ(Nw, Nw) + r * J * integ(Nt, Nt)
+    if rotary == "legacy":
+        m = m + r * Iz * integ(Nv, Nv) + r * Iy * integ(Nw, Nw)
+    elif rotary == "correct":
+        dNv = vec([(1, dpsi[0]), (2, dpsi[1]), (7, dpsi[2]), (8, dpsi[3])])
+        dNw = vec([(3, dpsi[0]), (4, dpsi[1]), (9, dpsi[2]), (10, dpsi[3])])
+        m = m + r * Iz * integ(dNv, dNv) + r * Iy * integ(dNw, dNw)
+    elif rotary != "none":
+        raise ValueError(rotary)
     return k, m
 
 
@@ -169,13 +173,20 @@ def legacy_workdir():
             os.chdir(old)
 
 
-def assemble_legacy(mod, material: str, n_points: int):
-    """Global K, M exactly as the legacy assembly loop (no boundary conditions)."""
-    E, _, r, L, _, _, Iy, Iz, A, G, J = mod.material_prop(material)
-    k_fun, m_fun = mod.matrixes()
+def assemble_legacy(mod, material: str, n_points: int, rotary: str | None = None, props=None):
+    """Global K, M exactly as the legacy assembly loop (no boundary conditions).
+
+    ``rotary`` (audit only) bypasses ``mod.matrixes`` and uses the numerical element with
+    the chosen rotary-inertia option; ``props`` overrides ``material_prop`` output.
+    """
+    E, _, r, L, _, _, Iy, Iz, A, G, J = props if props is not None else mod.material_prop(material)
     le = L / (n_points - 1)
-    k = k_fun(E, A, Iy, Iz, G, le, r, J)
-    m = m_fun(E, A, Iy, Iz, G, le, r, J)
+    if rotary is None:
+        k_fun, m_fun = mod.matrixes()
+        k = k_fun(E, A, Iy, Iz, G, le, r, J)
+        m = m_fun(E, A, Iy, Iz, G, le, r, J)
+    else:
+        k, m = _legacy_element(E, A, Iy, Iz, G, le, r, J, rotary=rotary)
     nd = 6 * n_points
     K = np.zeros((nd, nd))
     M = np.zeros((nd, nd))

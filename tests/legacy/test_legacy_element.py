@@ -54,3 +54,11 @@ def test_numeric_reproduction_equals_sympy_original():
     k, m = element()
     np.testing.assert_allclose(np.array(ks(E, A, Iy, Iz, G, L, r, J), float), k, rtol=1e-10, atol=1e-6)
     np.testing.assert_allclose(np.array(ms(E, A, Iy, Iz, G, L, r, J), float), m, rtol=1e-10, atol=1e-12)
+
+
+def test_correct_rotary_term_is_rayleigh_beam_matrix():
+    _, m_none = lh._legacy_element(E, A, Iy, Iz, G, L, r, J, rotary="none")
+    _, m_ok = lh._legacy_element(E, A, Iy, Iz, G, L, r, J, rotary="correct")
+    # rho I / (30 L) * 36 on the translational diagonal (Przemieniecki)
+    np.testing.assert_allclose(m_ok[3, 3] - m_none[3, 3], r * Iy * 36 / (30 * L), rtol=1e-12)
+    np.testing.assert_allclose(m_ok[4, 4] - m_none[4, 4], r * Iy * 4 * L / 30, rtol=1e-12)

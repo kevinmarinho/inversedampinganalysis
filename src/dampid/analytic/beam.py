@@ -84,3 +84,39 @@ def free_free_end_mass_factor(m_end_total: float, m_beam: float) -> float:
     f/f0 ~= 1 / sqrt(1 + 4 m_end_total / m_beam). First-order (shape unchanged).
     """
     return 1.0 / np.sqrt(1.0 + 4.0 * m_end_total / m_beam)
+
+
+def mode_shape(x_over_L, bc: str, n: int = 1):
+    """Euler–Bernoulli bending mode shape n, normalised so that (1/L) int phi^2 dx = 1.
+
+    free-free:    phi = cosh bx + cos bx - s (sinh bx + sin bx), s = (cosh bL - cos bL)/(sinh bL - sin bL)
+    clamped-free: phi = cosh bx - cos bx - s (sinh bx - sin bx), s = (cosh bL + cos bL)/(sinh bL + sin bL)
+    """
+    bl = bending_roots(bc, n)[n - 1]
+    xi = np.asarray(x_over_L, dtype=float)
+
+    def raw(z):
+        bx = bl * z
+        if bc == "free-free":
+            s = (np.cosh(bl) - np.cos(bl)) / (np.sinh(bl) - np.sin(bl))
+            return np.cosh(bx) + np.cos(bx) - s * (np.sinh(bx) + np.sin(bx))
+        if bc == "clamped-free":
+            s = (np.cosh(bl) + np.cos(bl)) / (np.sinh(bl) + np.sin(bl))
+            return np.cosh(bx) - np.cos(bx) - s * (np.sinh(bx) - np.sin(bx))
+        raise ValueError(bc)
+
+    zz = np.linspace(0, 1, 4001)
+    norm = np.sqrt(np.trapezoid(raw(zz) ** 2, zz))
+    return raw(xi) / norm
+
+
+def point_mass_frequency_factor(positions_over_L, masses, m_beam: float, bc: str, n: int = 1):
+    """First-order (Rayleigh) estimate of f_n / f_n(bare) for point masses on a uniform beam:
+
+        f/f0 ~= 1 / sqrt(1 + sum_i m_i phi_n(x_i)^2 / m_beam),  phi normalised as in mode_shape.
+
+    Neglects rotary inertia of the masses and the change of mode shape (valid for small
+    mass ratios; it is an audit-level sanity check, not the Phase-4 model).
+    """
+    phi = mode_shape(np.asarray(positions_over_L), bc, n)
+    return 1.0 / np.sqrt(1.0 + np.sum(np.asarray(masses) * phi**2) / m_beam)
