@@ -49,6 +49,7 @@ extend-exclude = ["legacy", "notebooks"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "NPY"]
+ignore = ["E741"]  # I (second moment of area) is the standard symbol
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

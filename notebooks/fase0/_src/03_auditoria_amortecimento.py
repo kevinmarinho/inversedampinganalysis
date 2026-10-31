@@ -81,7 +81,7 @@ print("\nConstrução correta, alumínio, ζ = 1 %:", np.round(z_ok, 6), "| supe
 # **Confirmado (C2), e de forma mais grave do que o esperado.** O ζ de entrada do legado
 # é **amplificado por um fator da ordem de 10⁵ a 10⁶**, diferente por modo e por material:
 #
-# * entrada ζ = 10⁻⁶ ⇒ ζ real de **0,04 a 3** (alumínio: 0,4 no 1º modo, 0,8 no 2º);
+# * entrada ζ = 10⁻⁶ ⇒ ζ real de **0,04 a 2** (alumínio: 0,4 no 1º modo, 0,8 no 2º);
 # * entrada ζ = 10⁻² (1 %) ⇒ ζ real de centenas a dezenas de milhares — o modelo está
 #   totalmente **superamortecido**.
 #

@@ -59,7 +59,9 @@ def torsion_constant_rectangle(a: float, b: float) -> float:
     return a * b**3 / 3 * (1 - 192 / np.pi**5 * (b / a) * s)
 
 
-def torsion_frequencies_hz(G: float, Jt: float, rho: float, Ip: float, L: float, bc: str, n: int = 5):
+def torsion_frequencies_hz(
+    G: float, Jt: float, rho: float, Ip: float, L: float, bc: str, n: int = 5
+):
     """Uniform shaft in torsion: f_n = lambda_n / (2 pi L) sqrt(G J_t / (rho I_p)).
 
     clamped-free: lambda_n = (2n-1) pi/2 ; free-free / clamped-clamped: lambda_n = n pi.
@@ -89,8 +91,10 @@ def free_free_end_mass_factor(m_end_total: float, m_beam: float) -> float:
 def mode_shape(x_over_L, bc: str, n: int = 1):
     """Euler–Bernoulli bending mode shape n, normalised so that (1/L) int phi^2 dx = 1.
 
-    free-free:    phi = cosh bx + cos bx - s (sinh bx + sin bx), s = (cosh bL - cos bL)/(sinh bL - sin bL)
-    clamped-free: phi = cosh bx - cos bx - s (sinh bx - sin bx), s = (cosh bL + cos bL)/(sinh bL + sin bL)
+    free-free:    phi = cosh bx + cos bx - s (sinh bx + sin bx),
+                  s = (cosh bL - cos bL) / (sinh bL - sin bL)
+    clamped-free: phi = cosh bx - cos bx - s (sinh bx - sin bx),
+                  s = (cosh bL + cos bL) / (sinh bL + sin bL)
     """
     bl = bending_roots(bc, n)[n - 1]
     xi = np.asarray(x_over_L, dtype=float)

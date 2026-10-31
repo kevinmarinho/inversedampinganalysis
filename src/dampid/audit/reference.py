@@ -145,7 +145,9 @@ def describe_legacy_dof(global_index: int, n_points: int, length: float):
     return node, x, LEGACY_NODE_DOFS[local]
 
 
-def projected_modal_damping(K: np.ndarray, M: np.ndarray, C: np.ndarray, n_modes: int | None = None):
+def projected_modal_damping(
+    K: np.ndarray, M: np.ndarray, C: np.ndarray, n_modes: int | None = None
+):
     """Modal damping ratio of each *undamped* mode r by projection:
 
         zeta_r = phi_r^T C phi_r / (2 omega_r),   Phi mass-normalised.
@@ -187,7 +189,11 @@ def fit_sdof_zeta_logmag(f_hz, H_meas, fn_model_hz, band, m_free=True):
         off = np.mean(y - h) if m_free else 0.0
         return y - h - off, off
 
-    res = minimize_scalar(lambda lz: np.sum(resid(lz)[0] ** 2), bounds=(-6, 0), method="bounded",
-                          options={"xatol": 1e-9})
+    res = minimize_scalar(
+        lambda lz: np.sum(resid(lz)[0] ** 2),
+        bounds=(-6, 0),
+        method="bounded",
+        options={"xatol": 1e-9},
+    )
     _, off = resid(res.x)
     return 10**res.x, 10 ** (-off)

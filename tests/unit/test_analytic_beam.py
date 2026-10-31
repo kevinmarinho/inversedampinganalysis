@@ -1,4 +1,5 @@
 """Verification of the closed-form beam references (Blevins tables)."""
+
 import numpy as np
 import pytest
 

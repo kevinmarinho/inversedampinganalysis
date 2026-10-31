@@ -42,7 +42,9 @@ def parse_percent(text: str):
             return
         src = "\n".join(buf).strip("\n")
         if kind == "markdown":
-            src = "\n".join(line[2:] if line.startswith("# ") else line.lstrip("#") for line in src.splitlines())
+            src = "\n".join(
+                line[2:] if line.startswith("# ") else line.lstrip("#") for line in src.splitlines()
+            )
         if src.strip():
             cells.append((kind, src))
 
@@ -78,7 +80,9 @@ def execute(src_path: Path, phase: str):
         for kind, src in cells:
             cid = uuid.uuid4().hex[:8]
             if kind == "markdown":
-                nb_cells.append({"cell_type": "markdown", "id": cid, "metadata": {}, "source": _lines(src)})
+                nb_cells.append(
+                    {"cell_type": "markdown", "id": cid, "metadata": {}, "source": _lines(src)}
+                )
                 continue
             n_exec += 1
             out = io.StringIO()
@@ -97,24 +101,36 @@ def execute(src_path: Path, phase: str):
                 png = io.BytesIO()
                 fig.savefig(png, format="png", dpi=110, bbox_inches="tight")
                 fig.savefig(fig_dir / f"{stem}_fig{n_fig:02d}.png", dpi=130, bbox_inches="tight")
-                outputs.append({
-                    "output_type": "display_data",
-                    "data": {
-                        "image/png": base64.b64encode(png.getvalue()).decode(),
-                        "text/plain": [f"<Figure {stem}_fig{n_fig:02d}>"],
-                    },
-                    "metadata": {},
-                })
+                outputs.append(
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "image/png": base64.b64encode(png.getvalue()).decode(),
+                            "text/plain": [f"<Figure {stem}_fig{n_fig:02d}>"],
+                        },
+                        "metadata": {},
+                    }
+                )
                 plt.close(fig)
             if error:
-                outputs.append({
-                    "output_type": "error", "ename": "Exception", "evalue": "see traceback",
-                    "traceback": error.splitlines(),
-                })
-            nb_cells.append({
-                "cell_type": "code", "id": cid, "metadata": {}, "execution_count": n_exec,
-                "outputs": outputs, "source": _lines(src),
-            })
+                outputs.append(
+                    {
+                        "output_type": "error",
+                        "ename": "Exception",
+                        "evalue": "see traceback",
+                        "traceback": error.splitlines(),
+                    }
+                )
+            nb_cells.append(
+                {
+                    "cell_type": "code",
+                    "id": cid,
+                    "metadata": {},
+                    "execution_count": n_exec,
+                    "outputs": outputs,
+                    "source": _lines(src),
+                }
+            )
             if error:
                 print(error, file=sys.stderr)
                 raise SystemExit(f"[{stem}] cell {n_exec} failed")
@@ -131,7 +147,9 @@ def execute(src_path: Path, phase: str):
     }
     out_path = src_path.parent.parent / f"{stem}.ipynb"
     out_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False), encoding="utf-8")
-    print(f"[{stem}] {n_exec} code cells, {n_fig} figures, {time.time() - t0:.1f} s -> {out_path.relative_to(ROOT)}")
+    elapsed = time.time() - t0
+    rel = out_path.relative_to(ROOT)
+    print(f"[{stem}] {n_exec} code cells, {n_fig} figures, {elapsed:.1f} s -> {rel}")
 
 
 if __name__ == "__main__":

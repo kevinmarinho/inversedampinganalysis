@@ -1,4 +1,5 @@
 """Verification of the audit yardsticks against closed-form results."""
+
 import numpy as np
 import pytest
 
@@ -12,6 +13,7 @@ def test_modal_damping_matrix_recovers_prescribed_zeta():
     K = Q @ Q.T + n * np.eye(n)
     M = np.diag(rng.uniform(0.5, 2.0, n))
     import scipy.linalg as sla
+
     w2, Phi = sla.eigh(K, M)
     zeta = np.linspace(0.001, 0.05, n)
     C = ref.modal_damping_matrix(M, Phi, np.sqrt(w2), zeta)
@@ -49,6 +51,7 @@ def test_projected_damping_matches_prescribed():
     K = Q @ Q.T + n * np.eye(n)
     M = np.diag(rng.uniform(0.5, 2.0, n))
     import scipy.linalg as sla
+
     w2, Phi = sla.eigh(K, M)
     zeta = np.linspace(0.002, 0.03, n)
     C = ref.modal_damping_matrix(M, Phi, np.sqrt(w2), zeta)

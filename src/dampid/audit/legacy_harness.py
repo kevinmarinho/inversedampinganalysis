@@ -39,7 +39,13 @@ _GAUSS_X, _GAUSS_W = np.polynomial.legendre.leggauss(6)
 
 
 def sympy_available() -> bool:
-    return importlib.util.find_spec("sympy") is not None
+    mod = sys.modules.get("sympy")
+    if mod is not None and getattr(mod, "__dampid_stub__", False):
+        return False
+    try:
+        return importlib.util.find_spec("sympy") is not None
+    except ValueError:  # a module registered without __spec__
+        return False
 
 
 def _hermite(xi: np.ndarray, L: float):
@@ -49,24 +55,30 @@ def _hermite(xi: np.ndarray, L: float):
     the classical functions below (xi = x/L).
     Returns (psi, dpsi/dx, d2psi/dx2), each of shape (4, n).
     """
-    psi = np.array([
-        1 - 3 * xi**2 + 2 * xi**3,
-        L * (xi - 2 * xi**2 + xi**3),
-        3 * xi**2 - 2 * xi**3,
-        L * (-(xi**2) + xi**3),
-    ])
-    dpsi = np.array([
-        (-6 * xi + 6 * xi**2) / L,
-        1 - 4 * xi + 3 * xi**2,
-        (6 * xi - 6 * xi**2) / L,
-        -2 * xi + 3 * xi**2,
-    ])
-    ddpsi = np.array([
-        (-6 + 12 * xi) / L**2,
-        (-4 + 6 * xi) / L,
-        (6 - 12 * xi) / L**2,
-        (-2 + 6 * xi) / L,
-    ])
+    psi = np.array(
+        [
+            1 - 3 * xi**2 + 2 * xi**3,
+            L * (xi - 2 * xi**2 + xi**3),
+            3 * xi**2 - 2 * xi**3,
+            L * (-(xi**2) + xi**3),
+        ]
+    )
+    dpsi = np.array(
+        [
+            (-6 * xi + 6 * xi**2) / L,
+            1 - 4 * xi + 3 * xi**2,
+            (6 * xi - 6 * xi**2) / L,
+            -2 * xi + 3 * xi**2,
+        ]
+    )
+    ddpsi = np.array(
+        [
+            (-6 + 12 * xi) / L**2,
+            (-4 + 6 * xi) / L,
+            (6 - 12 * xi) / L**2,
+            (-2 + 6 * xi) / L,
+        ]
+    )
     return psi, dpsi, ddpsi
 
 
@@ -108,8 +120,18 @@ def _legacy_element(E, A, Iy, Iz, G, L, r, J, rotary: str = "legacy"):
     def integ(a, b):
         return (a * w) @ b.T
 
-    k = E * A * integ(Bn, Bn) + E * Iy * integ(Bw, Bw) + E * Iz * integ(Bv, Bv) + G * J * integ(Bt, Bt)
-    m = r * A * integ(Nu, Nu) + r * A * integ(Nv, Nv) + r * A * integ(Nw, Nw) + r * J * integ(Nt, Nt)
+    k = (
+        E * A * integ(Bn, Bn)
+        + E * Iy * integ(Bw, Bw)
+        + E * Iz * integ(Bv, Bv)
+        + G * J * integ(Bt, Bt)
+    )
+    m = (
+        r * A * integ(Nu, Nu)
+        + r * A * integ(Nv, Nv)
+        + r * A * integ(Nw, Nw)
+        + r * J * integ(Nt, Nt)
+    )
     if rotary == "legacy":
         m = m + r * Iz * integ(Nv, Nv) + r * Iy * integ(Nw, Nw)
     elif rotary == "correct":
@@ -141,9 +163,13 @@ def load_legacy(force_numeric_matrixes: bool | None = None) -> types.ModuleType:
     reproduction. The attribute ``Biblioteca.__matrixes_source__`` records which one
     is in use ("sympy" or "numeric-reproduction").
     """
-    use_numeric = (not sympy_available()) if force_numeric_matrixes is None else force_numeric_matrixes
+    use_numeric = (
+        (not sympy_available()) if force_numeric_matrixes is None else force_numeric_matrixes
+    )
     if not sympy_available() and "sympy" not in sys.modules:
-        sys.modules["sympy"] = types.ModuleType("sympy")
+        stub = types.ModuleType("sympy")
+        stub.__dampid_stub__ = True
+        sys.modules["sympy"] = stub
     if str(LEGACY_DIR) not in sys.path:
         sys.path.insert(0, str(LEGACY_DIR))
     spec = importlib.util.spec_from_file_location("Biblioteca", LEGACY_DIR / "Biblioteca.py")
