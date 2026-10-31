@@ -143,3 +143,27 @@ def describe_legacy_dof(global_index: int, n_points: int, length: float):
     node, local = divmod(global_index, 6)
     x = length * node / (n_points - 1)
     return node, x, LEGACY_NODE_DOFS[local]
+
+
+def projected_modal_damping(K: np.ndarray, M: np.ndarray, C: np.ndarray, n_modes: int | None = None):
+    """Modal damping ratio of each *undamped* mode r by projection:
+
+        zeta_r = phi_r^T C phi_r / (2 omega_r),   Phi mass-normalised.
+
+    Exact when Phi^T C Phi is diagonal (proportional damping); for non-proportional C
+    it is the usual first-order estimate. zeta_r > 1 means the mode is overdamped (it
+    no longer oscillates). Unlike the state-space eigenvalues, the result stays attached
+    to the undamped mode r, so modes cannot be mislabelled when some become overdamped.
+    Returns (omega_r [rad/s], zeta_r, n_overdamped_state_eigs).
+    """
+    w2, Phi = sla.eigh(K, M)
+    w = np.sqrt(np.abs(w2))
+    z = np.einsum("ir,ij,jr->r", Phi, C, Phi) / (2 * w)
+    n = K.shape[0]
+    Minv = np.linalg.inv(M)
+    A = np.block([[np.zeros((n, n)), np.eye(n)], [-Minv @ K, -Minv @ C]])
+    lam = sla.eigvals(A)
+    n_real = int(np.sum(np.abs(lam.imag) < 1e-9 * np.abs(lam)))
+    if n_modes is not None:
+        w, z = w[:n_modes], z[:n_modes]
+    return w, z, n_real

@@ -40,3 +40,18 @@ def test_simple_h1_identity_system():
 def test_describe_legacy_dof():
     assert ref.describe_legacy_dof(34, 6, 0.271)[2] == "w'"
     assert ref.describe_legacy_dof(33, 6, 0.271)[2] == "w"
+
+
+def test_projected_damping_matches_prescribed():
+    rng = np.random.default_rng(2)
+    n = 5
+    Q = rng.standard_normal((n, n))
+    K = Q @ Q.T + n * np.eye(n)
+    M = np.diag(rng.uniform(0.5, 2.0, n))
+    import scipy.linalg as sla
+    w2, Phi = sla.eigh(K, M)
+    zeta = np.linspace(0.002, 0.03, n)
+    C = ref.modal_damping_matrix(M, Phi, np.sqrt(w2), zeta)
+    w, z, n_real = ref.projected_modal_damping(K, M, C)
+    np.testing.assert_allclose(z, zeta, rtol=1e-8)
+    assert n_real == 0
