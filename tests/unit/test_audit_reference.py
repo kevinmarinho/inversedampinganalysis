@@ -55,3 +55,11 @@ def test_projected_damping_matches_prescribed():
     w, z, n_real = ref.projected_modal_damping(K, M, C)
     np.testing.assert_allclose(z, zeta, rtol=1e-8)
     assert n_real == 0
+
+
+def test_fit_sdof_zeta_recovers_truth_without_mismatch():
+    f = np.arange(100, 200, 0.05)
+    H = ref.sdof_accelerance(f, 152.0, 0.002, m=0.15)
+    z, m = ref.fit_sdof_zeta_logmag(f, H, 152.0, (140, 165))
+    assert z == pytest.approx(0.002, rel=1e-4)
+    assert m == pytest.approx(0.15, rel=1e-4)

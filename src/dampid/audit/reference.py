@@ -167,3 +167,27 @@ def projected_modal_damping(K: np.ndarray, M: np.ndarray, C: np.ndarray, n_modes
     if n_modes is not None:
         w, z = w[:n_modes], z[:n_modes]
     return w, z, n_real
+
+
+def fit_sdof_zeta_logmag(f_hz, H_meas, fn_model_hz, band, m_free=True):
+    """Least-squares fit of zeta for a 1-DOF accelerance model with a FIXED natural
+    frequency, on log10|H| inside `band` (Hz). If m_free, the modal mass (amplitude scale)
+    is also fitted (it enters log|H| additively, so it is solved in closed form).
+
+    Used only in the audit to show how a frequency mismatch biases the identified zeta.
+    Returns (zeta_hat, m_hat).
+    """
+    from scipy.optimize import minimize_scalar
+
+    sel = (f_hz >= band[0]) & (f_hz <= band[1])
+    f, y = f_hz[sel], np.log10(np.abs(H_meas[sel]))
+
+    def resid(logz):
+        h = np.log10(np.abs(sdof_accelerance(f, fn_model_hz, 10**logz)))
+        off = np.mean(y - h) if m_free else 0.0
+        return y - h - off, off
+
+    res = minimize_scalar(lambda lz: np.sum(resid(lz)[0] ** 2), bounds=(-6, 0), method="bounded",
+                          options={"xatol": 1e-9})
+    _, off = resid(res.x)
+    return 10**res.x, 10 ** (-off)
