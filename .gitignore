@@ -1,0 +1,14 @@
+# raw data are kept OUT of git (size ~2 GB); integrity is tracked by data/raw/MANIFEST.sha256
+data/raw/**/*
+!data/raw/README.md
+!data/raw/MANIFEST.sha256
+data/processed/*
+!data/processed/.gitkeep
+results/*
+!results/.gitkeep
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/

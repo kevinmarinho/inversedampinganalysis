@@ -1,0 +1,61 @@
+pasta,arquivo,data,fs [Hz],amostras,duração [s],canais,unidades
+ACRILICO,LL_ACRILICO_01.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_02.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_03.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_04.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_05.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_06.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_07.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_08.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_09.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_10.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_11.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_12.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_13.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_14.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_15.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+ACRILICO,LL_ACRILICO_16.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_1.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_10.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_11.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_12.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_13.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_14.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_15.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_16.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_2.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_3.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_4.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_5.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_6.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_7.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_8.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+Al,Al_livre_livre_9.csv,21/11/2024,25600,128000,5.0,Acelerometro_1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_01.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_02.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_03.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_04.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_05.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_06.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_07.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_08.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_09.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_10.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_11.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_12.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_13.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_14.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_15.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+AÇO,LL_ACO_16.csv,21/11/2024,25600,128000,5.0,Acelerômetro 1 | Acelerometro 2 | Martelo,g | g | N
+exp_5,Aco_biengastado_mcentro_acentro.csv,25/01/2023,25600,102400,4.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Aco_biengastado_mforacentro_acentro.csv,25/01/2023,25600,102400,4.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Aco_engastado_livre_mcentro_aponta.csv,25/01/2023,25600,153600,6.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Aco_engastado_livre_mponta_aponta.csv,31/12/1903,25600,153600,6.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Acrilico_biengastado_mcentro_acentro.csv,25/01/2023,25600,51200,2.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Acrilico_biengastado_mforaponta_aponta.csv,25/01/2023,25600,51200,2.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Acrilico_engastado_livre_mcentro_aponta.csv,25/01/2023,25600,102400,4.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Acrilico_engastado_livre_mponta_aponta.csv,25/01/2023,25600,102400,4.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Al_biengastado_mcentro_acentro.csv,25/01/2023,25600,76800,3.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Al_biengastado_mforacentro_acentro.csv,25/01/2023,25600,76800,3.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Al_engastado_livre_mcentro_aponta.csv,25/01/2023,25600,102400,4.0,Input 0 | Input 1 | Input 2,g | g | N
+exp_5,Al_engastado_livre_mponta_aponta.csv,25/01/2023,25600,104593,4.086,Input 0 | Input 1 | Input 2,g | g | N
