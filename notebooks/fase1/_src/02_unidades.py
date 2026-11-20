@@ -29,8 +29,12 @@ from dampid.io.catalog import load_catalog
 from dampid.io.ni_csv import read_ni_csv
 from dampid.io.units import G0, to_si
 
+from dampid.eda.survey import survey_catalog
+
 cat = load_catalog("data/catalog.yaml")
 src = yaml.safe_load(open("configs/data_sources.yaml", encoding="utf-8"))
+# Levantamento de todas as métricas por registro (usado pelas Etapas 1.2–1.5); regenerável.
+survey_catalog(cat).to_csv("data/processed/fase1_survey.csv", index=False)
 sv = pd.read_csv("data/processed/fase1_survey.csv")
 c2 = sv[sv.campaign == 2].copy()
 date = {e.id: e.timestamp[:10] for e in cat.entries}

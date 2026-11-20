@@ -1,0 +1,20 @@
+# Critério de classificação de ensaios (D1.2). Lido por dampid.eda.classify.
+# Mudou um limiar? Rode notebooks/fase1/_src/06_classificacao.py de novo: o catálogo é
+# regenerado e as contagens do relatório mudam junto.
+
+saturation_frac: 0.98          # |a| >= 0.98 x fundo de escala (±50 g) => canal saturado
+multi_impact_ratio: 0.10       # 2º pulso >= 10 % do principal => impacto múltiplo
+atypical_width_rel: 0.50       # |largura/mediana da config - 1| > 50 % => golpe atípico
+repetition_outlier_db: 1.5     # desvio de log|H| > max(1,5 dB; 3 x mediana da config) => destoa
+repetition_outlier_k: 3.0
+config_coherence_min: 0.90     # γ² mediana na banda (entre repetições) abaixo disso => canal não repetível
+truncation_decay_db: -40.0     # decaimento no registro menor que 40 dB => truncado (sinalizar, D2.2)
+pre_vibration_db: 25.0         # RMS antes do golpe > 25 dB acima do piso => já vibrava (sinalizar)
+
+# Classes
+#  ouro       : todos os canais de aceleração "ok" (sem saturação, impacto único, golpe típico,
+#               não destoa, configuração repetível) e campanha sem pendência de canal.
+#  utilizável : ao menos um canal de aceleração sem saturação; demais problemas viram
+#               sinalizações (o pipeline da Fase 2 trata ou exclui por canal).
+#  descartar  : nenhum canal de aceleração sem saturação (FRF inválida).
+#  pendente   : 1ª campanha — escala/identidade do canal de força não resolvida (C9).

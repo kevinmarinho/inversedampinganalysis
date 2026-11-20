@@ -9,5 +9,6 @@ de `ultima versao/` para cá, **mantendo os nomes** (`exp_5/`, `AÇO/`, `Al/`, `
 **Fonte:** dados experimentais do próprio pesquisador (UNESP), anexados ao Projeto
 claude.ai "Research China - Inverse Damping Analysis".
 
-**Presentes nesta cópia (Fase 0):** 60 arquivos — `exp_5/` (1ª campanha, 12),
-`AÇO/` (16), `Al/` (16), `ACRILICO/` (16). As demais pastas da 2ª campanha entram na Fase 1.
+**Presentes (desde a Fase 1):** 156 arquivos — `exp_5/` (1ª campanha, 12) e as 9 pastas da
+2ª campanha com 16 repetições cada. Metadados, qualidade e classe de cada arquivo:
+`data/catalog.yaml`.

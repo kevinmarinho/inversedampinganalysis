@@ -207,6 +207,27 @@ def response_quality(x: np.ndarray, fs: float, i_impact: int) -> ResponseQuality
     )
 
 
+def end_rms_split(x: np.ndarray, fs: float, fc_hz: float, end_s: float = 0.1) -> dict:
+    """RMS of the last `end_s` seconds split at `fc_hz` (zero-phase 4th-order Butterworth).
+
+    Separates what is still moving at the end of the record into the *elastic* band
+    (> fc, the modes we want; truncation there causes leakage) and the low band
+    (< fc: suspension / pendulum motion, which does not affect the elastic peaks).
+    Also returns the quietest 10-ms RMS of the high band (noise floor of that band).
+    """
+    from scipy.signal import butter, sosfiltfilt
+
+    x = np.nan_to_num(np.asarray(x, dtype=float))
+    lo = sosfiltfilt(butter(4, fc_hz, "lowpass", fs=fs, output="sos"), x)
+    hi = x - lo
+    n = int(end_s * fs)
+    return {
+        "end_hi": float(np.sqrt(np.mean(hi[-n:] ** 2))),
+        "end_lo": float(np.sqrt(np.mean(lo[-n:] ** 2))),
+        "min_hi": float(np.min(short_time_rms(hi, fs))),
+    }
+
+
 # ----------------------------------------------------------------------------- FRF (EDA only)
 
 

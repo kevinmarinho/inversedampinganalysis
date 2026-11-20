@@ -24,15 +24,43 @@
 
 ---
 
+## 2026-11-20 — Fase 1 (inventário e EDA)
+
+**Gate da Fase 0:** tratado como aprovado ("continue fazendo o processo", 2026-10-31). Repositório GitHub `kevinmarinho/inversedampinganalysis` criado pelo pesquisador; Fase 0 na `main`, Fase 1 no branch `fase-1`.
+
+**Decisões registradas:** D1.1 conjunto de desenvolvimento = aço + Al livre-livre · D1.2 critério de classificação por canal e gravidade (`configs/qc_rules.yaml`). Ambas pela recomendação, por delegação do pesquisador.
+
+**Feito**
+- 96 CSVs que faltavam baixados do Projeto → `data/raw/` com 156 arquivos (manifesto ampliado).
+- `dampid.io` (leitor NI CSV robusto, unidades, catálogo pydantic) e `dampid.eda` (qualidade, levantamento, consistência, classificação); 27 testes.
+- 6 notebooks (`notebooks/fase1/01`–`06`), 6 relatórios + síntese (`docs/reports/fase1/`), `data/catalog.yaml` com classe e qualidade por arquivo.
+
+**Resultados principais**
+- Unidades g/N confirmadas por 3 caminhos físicos (ruído entre sessões, velocidade do martelo, linha de massa κ ≈ 1,5–2,4).
+- C9: hipótese "mesmo sinal nas duas entradas" rejeitada; escala de força da 1ª campanha segue desconhecida.
+- Saturação dos acelerômetros: fibra de carbono 16/16 (perdida para FRF), acrílico 5/16.
+- Banda útil da força nos metais: f₋₁₀ ≈ 150–190 Hz → só o 1º modo elástico bem excitado.
+- Aço truncado (decai 25 dB em 5 s; ζ ~ 7·10⁻⁴ grosseiro) e vibrando antes do golpe → D2.2.
+- Repetibilidade: aço f₁ = 157,62 ± 0,05 Hz, Al 152,01 ± 0,35 Hz, γ² ≥ 0,99; FV 0° não repetível.
+- Classificação: 52 ouro, 69 utilizável, 23 descartar, 12 pendente; dev set: aço 14 ouro, Al 13 ouro.
+
+**Limitações do ambiente:** PyPI continua bloqueado (sem xarray/NetCDF: tabelas processadas em CSV, regeneráveis).
+
+---
+
 ## Estado atual (§14 do prompt master)
 
-- **Fase atual:** 0 — concluída, **aguardando aprovação do gate** (revisão de `docs/audit_legacy.md`).
-- **Última decisão registrada:** D0.6 (2026-10-31).
-- **Dados:** 60 CSVs em `data/raw/` (exp_5, AÇO, Al, ACRILICO). Faltam no ambiente: fibra de carbono, fibra de vidro (0°/90°), PLA caverna/longarina (entram na Fase 1).
-- **Pendências do pesquisador:**
-  - [ ] C9: o que estava em cada entrada do DAQ na 1ª campanha e com qual sensibilidade
-  - [ ] Massa de um conjunto acelerômetro + base PLA + cera; posições dos conjuntos e do impacto (ou reanexar os PDFs com figuras)
-  - [ ] Dimensões medidas das barras; liga do aço e do Al; procedência do acrílico
-  - [ ] Ponto de impacto fixo ou variável entre repetições; ponteira por espécime
-  - [ ] Criar repositório GitHub privado e vazio (D0.3) e informar `usuário/nome`
-- **Próximo passo:** aprovação do gate da Fase 0 → plano da Fase 1 (inventário e EDA) com as decisões D1.1 e D1.2.
+- **Fase atual:** 1 — concluída, **aguardando aprovação do gate** (`docs/reports/fase1/00_sintese_fase1.md`). Branch `fase-1`.
+- **Última decisão registrada:** D1.2 (2026-11-20).
+- **Dados:** 156 CSVs em `data/raw/`, catalogados e classificados em `data/catalog.yaml`.
+- **Pendências do pesquisador** (detalhes na síntese da Fase 1):
+  - [ ] Posições dos sensores e do impacto, direção do golpe (fotos)
+  - [ ] Massas: espécimes e um conjunto sensor + base PLA + cera + cabo
+  - [ ] Dimensões medidas de aço e Al; ligas
+  - [ ] Ponteira do martelo por espécime
+  - [ ] FV 0°: o ponto/direção do golpe mudou entre repetições?
+  - [ ] Fibra de carbono: dimensões/layup; possibilidade de repetir o ensaio sem saturar
+  - [ ] PLA: diferença entre longarina e longarina_90; cotas e parâmetros de impressão; FV: espessura/layup
+  - [ ] C9: ligações e sensibilidades das entradas na 1ª campanha
+  - [ ] Copiar o `prompt_master.md` para `CLAUDE.md`; rodar `uv lock && uv sync && uv run pytest` localmente
+- **Próximo passo:** aprovação do gate da Fase 1 → merge de `fase-1` na `main` → plano da Fase 2 (pipeline de sinais) com D2.1–D2.3.
