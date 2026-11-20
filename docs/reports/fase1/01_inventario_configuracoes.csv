@@ -1,0 +1,22 @@
+config,camp.,CC,n,datas,fs [Hz],duração [s],canais,anomalias
+C1_ACO_CC_mcentro_acentro,1,clamped-clamped,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACO_CC_mforacentro_acentro,1,clamped-clamped,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACO_CF_mcentro_aponta,1,clamped-free,1,25/01/2023,[25600.0],[6.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACO_CF_mponta_aponta,1,clamped-free,1,31/12/1903,[25600.0],[6.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACRILICO_CC_mcentro_acentro,1,clamped-clamped,1,25/01/2023,[25600.0],[2.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACRILICO_CC_mforaponta_aponta,1,clamped-clamped,1,25/01/2023,[25600.0],[2.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACRILICO_CF_mcentro_aponta,1,clamped-free,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_ACRILICO_CF_mponta_aponta,1,clamped-free,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_AL_CC_mcentro_acentro,1,clamped-clamped,1,25/01/2023,[25600.0],[3.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_AL_CC_mforacentro_acentro,1,clamped-clamped,1,25/01/2023,[25600.0],[3.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_AL_CF_mcentro_aponta,1,clamped-free,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],0
+C1_AL_CF_mponta_aponta,1,clamped-free,1,25/01/2023,[25600.0],[4.0],Input 0 [g] | Input 1 [g] | Input 2 [N],1
+LL_ACO,2,free-free,16,21/11/2024,[25600.0],[5.0],Acelerômetro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_ACRILICO,2,free-free,16,21/11/2024,[25600.0],[5.0],Acelerômetro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_AL,2,free-free,16,21/11/2024,[25600.0],[5.0],Acelerometro_1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_FIB_CARBONO,2,free-free,16,28/11/2024,[25600.0],[5.0],Acelerometro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_FIB_VIDRO_0,2,free-free,16,21/11/2024,[25600.0],[5.0],Acelerômetro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_FIB_VIDRO_90,2,free-free,16,21/11/2024,[25600.0],[5.0],Acelerômetro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_PLA_CAVERNA,2,free-free,16,28/11/2024,[25600.0],[5.0],Acelerometro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_PLA_LONGARINA_0,2,free-free,16,28/11/2024,[25600.0],"[3.0, 5.0]",Acelerometro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
+LL_PLA_LONGARINA_90,2,free-free,16,28/11/2024,[25600.0],"[3.0, 5.0]",Acelerometro 1 [g] | Acelerometro 2 [g] | Martelo [N],0
