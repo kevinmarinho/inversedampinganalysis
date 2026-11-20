@@ -126,11 +126,13 @@ folders:
   exp_5:
     config_id: from_filename   # <Material>_<engastado_livre|biengastado>_m<pos>_a<pos>
     campaign: 1
-    channels: [accelerometer, unknown, unknown]   # C9: Input 1 e Input 2 não resolvidos
+    channels: [accelerometer, hammer, hammer]   # C9 resolvido (D1.4): Input 1 e Input 2 = o mesmo martelo
+    sensitivity_unknown: [1]   # Input 1 [g]: fator de conversão configurado desconhecido (≈ 2,25/1,15 mV por unidade)
     note: >-
       1ª campanha (jan/2023), cabeçalhos genéricos Input 0/1/2. Input 0 = acelerômetro
-      (rótulo g); Input 1 [g] e Input 2 [N] carregam o mesmo pulso de força, com razão
-      In1/In2 ≈ 1,12–1,20 plana em 5–300 Hz (C9, adendo da Fase 1).
+      (rótulo g). Input 1 [g] e Input 2 [N]: o mesmo martelo ligado em duas entradas
+      (confirmado pelo pesquisador em 2026-11-20); razão In1/In2 ≈ 1,13–1,20, plana em
+      5–300 Hz. Força = Input 2; onde o Input 2 está sem sinal, Input 1 / razão mediana (D1.4).
     setup:
       clamped-clamped: {accel: "centro (L/2)", impact: "L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>"}
       clamped-free: {accel: "ponta livre", impact: "L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>"}

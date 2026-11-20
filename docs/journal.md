@@ -49,16 +49,17 @@
 
 **Adendo (mesmo dia, respostas do pesquisador):** posições/orientação dos sensores (fotos), impacto livre-livre sem ponto fixo, 1ª campanha com impacto em L/4, dimensões da Tabela 1 (D1.3), ponteiras metal/borracha (inferidas pelo contato), FV alinhado com golpe variável e tubo girando. Notebook 07: impacto efetivo perto do meio das barras; linha de massa 1,2–1,4× acima do modelo nominal; **C9: Input 1 e Input 2 são a mesma força** (|In1/In2| = 1,13–1,20, plana) → D1.4 proposta.
 
+**D1.4 (mesmo dia):** o pesquisador confirmou que o martelo foi ligado em Input 1 e Input 2 na 1ª campanha. Força = Input 2; no aço engaste-livre, Input 1 ÷ 1,135. A 1ª campanha passa de pendente para 10 utilizáveis + 2 descartados (acelerômetro saturado).
+
 ---
 
 ## Estado atual (§14 do prompt master)
 
 - **Fase atual:** 1 — concluída, **aguardando aprovação do gate** (`docs/reports/fase1/00_sintese_fase1.md`). Branch `fase-1`.
-- **Última decisão registrada:** D1.3 (2026-11-20); D1.4 (canal de força da 1ª campanha) aguardando o pesquisador.
-- **Dados:** 156 CSVs em `data/raw/`, catalogados e classificados em `data/catalog.yaml`.
+- **Última decisão registrada:** D1.4 (2026-11-20): força da 1ª campanha = Input 2 (aço engaste-livre: Input 1 ÷ 1,135).
+- **Dados:** 156 CSVs em `data/raw/`, catalogados e classificados em `data/catalog.yaml` (52 ouro, 79 utilizável, 25 descartar).
 - **Pendências do pesquisador** (detalhes na síntese da Fase 1):
   - [ ] Massas: espécimes e um conjunto sensor + base PLA + cera + cabo
-  - [ ] D1.4: canal de força da 1ª campanha
   - [ ] 1ª campanha: posição do impacto por arquivo e comprimento livre no engaste
   - [ ] Fibra de carbono: dimensões/layup; repetir o ensaio sem saturar?
   - [ ] FV: espessura/layup; PLA: cotas e parâmetros de impressão

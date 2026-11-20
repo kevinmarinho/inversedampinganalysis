@@ -212,6 +212,10 @@ plt.tight_layout()
 # tempo; essa rejeição foi forte demais, porque a deriva lenta de base do Input 1 distorce a
 # razão de picos. No aço engaste-livre só o Input 1 tem a força (o Input 2 estava sem sinal).
 #
+# **Confirmado pelo pesquisador (2026-11-20): o martelo foi ligado nas duas entradas.**
+# Decisão D1.4: força = Input 2; no aço engaste-livre, Input 1 ÷ razão mediana
+# (`dampid.eda.c9`, aplicado no notebook 06).
+#
 # Consequência: para ζ (que vem da forma da FRF), Input 1 e Input 2 dão o **mesmo resultado**.
 # A escala absoluta tem incerteza de ~15 %: qual dos dois está em N de verdade? O Input 2 tem
 # o rótulo N e dá velocidades de martelo plausíveis (Etapa 1.2). O legado usava o Input 1.

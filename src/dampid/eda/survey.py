@@ -21,19 +21,14 @@ def survey_record(e: Entry, raw_dir="data/raw") -> dict:
     rec = read_ni_csv(Path(raw_dir) / e.path)
     fs = rec.fs_hz
     row: dict = {"id": e.id, "config": e.config_id, "campaign": e.campaign, "rep": e.repetition}
-    # force channel: the one declared as hammer; 1st campaign -> the header's [N] channel
-    if any(c.role == "hammer" for c in e.channels):
-        kf = next(c.index for c in e.channels if c.role == "hammer")
-    else:
-        # 1st campaign (C9 unresolved): of the channels not declared as accelerometer,
-        # take the one whose largest pulse stands highest above its own noise. This is a
-        # description of the record, not a claim about what was wired to that input.
-        cand = [c.index for c in e.channels if c.role != "accelerometer"]
-        snr = [
-            np.nanmax(np.abs(rec.data[k])) / max(q.robust_sigma(rec.data[k]), 1e-12)
-            for k in cand
-        ]
-        kf = cand[int(np.argmax(snr))]
+    # Force channel: the hammer channel. In the 1st campaign the hammer was wired to two
+    # inputs (D1.4); take the copy whose pulse stands highest above its own noise (one copy
+    # is dead in two files). Descriptive only: the scale to N is in the catalogue.
+    hammers = [c.index for c in e.channels if c.role == "hammer"]
+    snr = [
+        np.nanmax(np.abs(rec.data[k])) / max(q.robust_sigma(rec.data[k]), 1e-12) for k in hammers
+    ]
+    kf = hammers[int(np.argmax(snr))]
     force = rec.data[kf]
     pulses = q.find_pulses(force, fs)
     im = q.main_pulse(pulses)
@@ -62,7 +57,7 @@ def survey_record(e: Entry, raw_dir="data/raw") -> dict:
     fsc = next((c.full_scale for c in e.channels if c.index == kf), None)
     row["F_peak_over_fs"] = abs(p.peak) / fsc if fsc else np.nan
     for c in e.channels:
-        if c.index == kf:
+        if c.role != "accelerometer":
             continue
         x = rec.data[c.index]
         tag = f"a{c.index}"

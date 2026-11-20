@@ -12,13 +12,16 @@
 # * **ouro** — impacto único e típico, nenhum canal saturado, repetição coerente com as
 #   demais; truncamento e vibração pré-impacto são **sinalizados**, não rebaixam (são
 #   propriedade do espécime/protocolo, tratados na Fase 2 — D2.2);
-# * **pendente** — 1ª campanha, até o pesquisador resolver C9.
+# * **1ª campanha** — no máximo **utilizável** (D1.4): um registro por configuração, sem
+#   coerência entre repetições, e escala da força ±15 %. O canal de força é escolhido aqui:
+#   Input 2 [N]; onde o Input 2 está sem sinal, Input 1 dividido pela razão In1/In2 mediana.
 
 # %%
 import numpy as np
 import pandas as pd
 import yaml
 
+from dampid.eda.c9 import assign_force_channels, duplicate_hammer_table
 from dampid.eda.classify import classify, infer_tip
 from dampid.io.catalog import load_catalog, save_catalog
 
@@ -36,7 +39,7 @@ print(f"piso de ruído usado: {floor * 1e3:.3f} mg rms")
 
 # %%
 m = cls.merge(sv[["id", "config"]], on="id")
-counts = pd.crosstab(m.config, m.file_class).reindex(columns=["ouro", "utilizável", "descartar", "pendente"],
+counts = pd.crosstab(m.config, m.file_class).reindex(columns=["ouro", "utilizável", "descartar"],
                                                       fill_value=0)
 counts["total"] = counts.sum(axis=1)
 camp1 = counts.index.str.startswith("C1_")
@@ -46,10 +49,10 @@ print(counts.to_string())
 counts.to_csv("docs/reports/fase1/06_classificacao_por_config.csv")
 
 # %% [markdown]
-# ## 2. Motivos (registros não-ouro da 2ª campanha)
+# ## 2. Motivos (registros não-ouro)
 
 # %%
-nz = m[(m.file_class != "ouro") & ~m.id.str.startswith("C1_")]
+nz = m[m.file_class != "ouro"]
 with pd.option_context("display.width", 250, "display.max_colwidth", 140):
     print(nz[["id", "file_class", "reasons"]].assign(reasons=nz.reasons.map("; ".join)).to_string(index=False))
 
@@ -76,6 +79,10 @@ for cfg in ["LL_ACO", "LL_AL"]:
 
 # %%
 cat = load_catalog("data/catalog.yaml")
+c9tab = duplicate_hammer_table(cat)
+r_med = assign_force_channels(cat, c9tab)
+print(c9tab.round(3).to_string(index=False))
+print(f"razão In1/In2 mediana usada onde o Input 2 está sem sinal: {r_med:.3f}")
 svi = sv.set_index("id")
 clsi = cls.set_index("id")
 keep = ["n_pulses", "second_pulse_ratio", "F_peak_N", "F_width_ms", "F_impulse_Ns", "F_f10db_hz",
@@ -93,5 +100,8 @@ tips = pd.crosstab(pd.Series([e.config_id if e.campaign == 2 else "1ª campanha"
                    pd.Series([e.hammer_tip for e in cat.entries], name="ponteira"))
 print(tips.to_string())
 cat2 = load_catalog("data/catalog.yaml")
+print(pd.DataFrame([{"id": e.id, "canal de força": e.force_channel,
+                    "fator p/ N": round(e.force_scale_to_N, 4), "nota": e.force_note}
+                   for e in cat.entries if e.campaign == 1]).to_string(index=False))
 print("catálogo salvo e revalidado:", cat2.n_files, "entradas;",
       dict(pd.Series([e.file_class for e in cat2.entries]).value_counts()))

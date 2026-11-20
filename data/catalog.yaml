@@ -31,8 +31,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -40,13 +40,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: indeterminado
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -57,15 +60,17 @@ entries:
     F_f10db_hz: 223.0
     F_f20db_hz: 482.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -64.2952
-    a1_decay_db: -42.343
+    a1_decay_db: null
     t_impact_s: 0.9644
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACO_CC_mforacentro_acentro
   path: exp_5/Aco_biengastado_mforacentro_acentro.csv
   sha256: b7a3ae46de73559907166576e1015c13c0cd1069ca8d955423a7fd23498dc4c3
@@ -95,8 +100,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -104,13 +109,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -121,15 +129,17 @@ entries:
     F_f10db_hz: 304.0
     F_f20db_hz: 434.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -65.0351
-    a1_decay_db: -42.0545
+    a1_decay_db: null
     t_impact_s: 0.8142
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACO_CF_mcentro_aponta
   path: exp_5/Aco_engastado_livre_mcentro_aponta.csv
   sha256: 00693e4f29bd224b3f96285ae1aac8f69cc4f00d8232e900f2e3dc7235fde4c3
@@ -159,8 +169,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -168,13 +178,17 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: indeterminado
+  force_channel: 1
+  force_scale_to_N: 0.8807575006513532
+  force_note: 'Input 2 sem sinal: força = Input 1 / 1.135 (razão In1/In2 mediana dos outros arquivos,
+    1.125–1.198) (D1.4)'
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 1.0
@@ -189,11 +203,14 @@ entries:
     a0_decay_db: -37.8561
     a1_decay_db: null
     t_impact_s: 0.8143
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - Acel 1 truncado (decai só 38 dB)
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACO_CF_mponta_aponta
   path: exp_5/Aco_engastado_livre_mponta_aponta.csv
   sha256: 3385650218de57d8474c01226573147240a217ebd9d3ad3c220ea6ea649a9039
@@ -223,8 +240,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -232,13 +249,17 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 1
+  force_scale_to_N: 0.8807575006513532
+  force_note: 'Input 2 sem sinal: força = Input 1 / 1.135 (razão In1/In2 mediana dos outros arquivos,
+    1.125–1.198) (D1.4)'
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 4.0
@@ -253,11 +274,15 @@ entries:
     a0_decay_db: -45.3701
     a1_decay_db: null
     t_impact_s: 0.6229
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - impacto múltiplo (2º pulso 75% do principal)
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - impacto múltiplo
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACRILICO_CC_mcentro_acentro
   path: exp_5/Acrilico_biengastado_mcentro_acentro.csv
   sha256: a04bba9af33e346ff689178321d4d06993636e0a547eef92c6146da50cf2b7d3
@@ -287,8 +312,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -296,13 +321,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -313,15 +341,17 @@ entries:
     F_f10db_hz: 57.0
     F_f20db_hz: 72.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -64.1828
-    a1_decay_db: -43.8528
+    a1_decay_db: null
     t_impact_s: 0.481
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACRILICO_CC_mforaponta_aponta
   path: exp_5/Acrilico_biengastado_mforaponta_aponta.csv
   sha256: 0a8947d841103201aebf874741a866774544609edf8f6bb0030252fac0e32f96
@@ -351,8 +381,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -360,13 +390,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -377,15 +410,18 @@ entries:
     F_f10db_hz: 65.0
     F_f20db_hz: 166.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -26.8797
-    a1_decay_db: -21.0811
+    a1_decay_db: null
     t_impact_s: 1.7532
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - Acel 1 truncado (decai só 27 dB)
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACRILICO_CF_mcentro_aponta
   path: exp_5/Acrilico_engastado_livre_mcentro_aponta.csv
   sha256: 002af4c4d5fe9888d000e1997dd1d3253b28b84ee49b72550e7c0d59b1b510f0
@@ -415,8 +451,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -424,13 +460,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 4.0
@@ -445,11 +484,15 @@ entries:
     a0_decay_db: -55.2764
     a1_decay_db: null
     t_impact_s: 0.8239
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - impacto múltiplo (2º pulso 13% do principal)
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - impacto múltiplo
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_ACRILICO_CF_mponta_aponta
   path: exp_5/Acrilico_engastado_livre_mponta_aponta.csv
   sha256: 807f6b1a10cfa06f99536dd00d0ff0295e1b72c5df9ba2c366ea3ed041bb0eb2
@@ -479,8 +522,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -488,13 +531,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 3.0
@@ -505,15 +551,18 @@ entries:
     F_f10db_hz: 3684.0
     F_f20db_hz: 4801.0
     a0_n_clipped: 8.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -58.9365
-    a1_decay_db: -45.2552
+    a1_decay_db: null
     t_impact_s: 0.8027
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: saturado
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - impacto múltiplo (2º pulso 21% do principal)
+  file_class: descartar
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - o acelerômetro saturou (±50 g)
 - id: C1_AL_CC_mcentro_acentro
   path: exp_5/Al_biengastado_mcentro_acentro.csv
   sha256: 9efd224dc6e27c9a22b0c7f705e59eb80c023549b8067bed7e48287bfa564d86
@@ -543,8 +592,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -552,13 +601,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -569,15 +621,17 @@ entries:
     F_f10db_hz: 141.0
     F_f20db_hz: 178.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -63.5632
-    a1_decay_db: -43.2775
+    a1_decay_db: null
     t_impact_s: 1.5139
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_AL_CC_mforacentro_acentro
   path: exp_5/Al_biengastado_mforacentro_acentro.csv
   sha256: 6aa8f38f71555e5caa42372756007b71544a47cd82c685e8458b54a296eaffcb
@@ -607,8 +661,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -616,13 +670,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>
   quality:
     n_pulses: 1.0
@@ -633,15 +690,17 @@ entries:
     F_f10db_hz: 161.0
     F_f20db_hz: 215.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -67.9353
-    a1_decay_db: -37.6952
+    a1_decay_db: null
     t_impact_s: 0.6448
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: C1_AL_CF_mcentro_aponta
   path: exp_5/Al_engastado_livre_mcentro_aponta.csv
   sha256: 069b45356fcc04e9adeb42036db305930f651fa6cfa42dc20464699b88e5c7a9
@@ -671,8 +730,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -680,13 +739,16 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 5.0
@@ -697,15 +759,18 @@ entries:
     F_f10db_hz: 687.0
     F_f20db_hz: 1043.0
     a0_n_clipped: 10.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -39.9676
-    a1_decay_db: -38.532
+    a1_decay_db: null
     t_impact_s: 1.0771
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: saturado
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - impacto múltiplo (2º pulso 57% do principal)
+  file_class: descartar
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - o acelerômetro saturou (±50 g)
 - id: C1_AL_CF_mponta_aponta
   path: exp_5/Al_engastado_livre_mponta_aponta.csv
   sha256: 9660efcaf82230b98eba139f6579bbab836838f3c831c156b7842f0356ae571b
@@ -735,8 +800,8 @@ entries:
     name: Input 1
     unit: g
     quantity_header: acceleration
-    role: unknown
-    sensor_model: null
+    role: hammer
+    sensor_model: PCB 086C03
     sensitivity_mv: null
     full_scale: null
     location: null
@@ -744,16 +809,19 @@ entries:
     name: Input 2
     unit: N
     quantity_header: force
-    role: unknown
-    sensor_model: null
-    sensitivity_mv: null
-    full_scale: null
+    role: hammer
+    sensor_model: PCB 086C03
+    sensitivity_mv: 2.25
+    full_scale: 2222.222222222222
     location: null
   anomalies:
   - 'channel 0: time break after sample 102400 (t=3.99996 -> 2.75574e+14); 2193 trailing rows discarded'
   - 'channel 1: time break after sample 102400 (t=3.99996 -> 0.00322562); 2193 trailing rows discarded'
   - 'channel 2: time break after sample 102400 (t=3.99996 -> 0.0773144); 2193 trailing rows discarded'
   hammer_tip: indeterminado
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: Input 2 [N]; Input 1 é cópia do mesmo martelo (D1.4)
   impact_location: L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>
   quality:
     n_pulses: 2.0
@@ -764,15 +832,21 @@ entries:
     F_f10db_hz: 265.0
     F_f20db_hz: 344.0
     a0_n_clipped: 0.0
-    a1_n_clipped: 0.0
+    a1_n_clipped: null
     a0_decay_db: -34.7289
-    a1_decay_db: -32.2616
+    a1_decay_db: null
     t_impact_s: 1.0734
-    channel_status: {}
-    flags: []
-  file_class: pendente
+    channel_status:
+      Acel 1: ok
+    flags:
+    - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
+    - Acel 1 truncado (decai só 35 dB)
+    - impacto múltiplo (2º pulso 89% do principal)
+    - já vibrava antes do golpe (63 dB acima do piso)
+  file_class: utilizável
   class_reasons:
-  - 'C9: identidade/escala do canal de força não resolvida'
+  - impacto múltiplo
+  - '1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)'
 - id: LL_ACO_01
   path: AÇO/LL_ACO_01.csv
   sha256: 6fdf9204203cb5a3ab97d45d245c0025139685899fdf375f99518acbdd1dde1b
@@ -818,6 +892,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -887,6 +964,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -955,6 +1035,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1023,6 +1106,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1092,6 +1178,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1161,6 +1250,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1230,6 +1322,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1299,6 +1394,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1368,6 +1466,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1437,6 +1538,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1509,6 +1613,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1579,6 +1686,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1647,6 +1757,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1716,6 +1829,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1785,6 +1901,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1853,6 +1972,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: indeterminado
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1921,6 +2043,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -1994,6 +2119,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2063,6 +2191,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2131,6 +2262,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2199,6 +2333,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2267,6 +2404,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2335,6 +2475,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2403,6 +2546,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2471,6 +2617,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2539,6 +2688,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2607,6 +2759,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2675,6 +2830,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2745,6 +2903,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2813,6 +2974,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2881,6 +3045,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -2949,6 +3116,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3017,6 +3187,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3083,6 +3256,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3149,6 +3325,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3215,6 +3394,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3281,6 +3463,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3349,6 +3534,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3415,6 +3603,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3483,6 +3674,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3549,6 +3743,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3616,6 +3813,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3682,6 +3882,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3748,6 +3951,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3814,6 +4020,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3881,6 +4090,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -3947,6 +4159,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -4013,6 +4228,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1
     ≈ 1, Fase 1 adendo)
   quality:
@@ -4079,6 +4297,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4146,6 +4367,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 3.0
@@ -4213,6 +4437,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4280,6 +4507,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 3.0
@@ -4347,6 +4577,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4414,6 +4647,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 3.0
@@ -4481,6 +4717,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4548,6 +4787,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4615,6 +4857,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -4681,6 +4926,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 3.0
@@ -4748,6 +4996,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4815,6 +5066,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4882,6 +5136,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -4949,6 +5206,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -5016,6 +5276,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -5083,6 +5346,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -5150,6 +5416,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5219,6 +5488,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5288,6 +5560,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5357,6 +5632,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5427,6 +5705,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5496,6 +5777,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5566,6 +5850,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5635,6 +5922,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 2.0
@@ -5706,6 +5996,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 2.0
@@ -5777,6 +6070,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5846,6 +6142,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5915,6 +6214,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -5984,6 +6286,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 2.0
@@ -6055,6 +6360,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6124,6 +6432,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6193,6 +6504,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6262,6 +6576,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6327,6 +6644,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6392,6 +6712,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6457,6 +6780,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6522,6 +6848,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -6589,6 +6918,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6654,6 +6986,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6719,6 +7054,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -6786,6 +7124,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -6853,6 +7194,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -6918,6 +7262,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -6985,6 +7332,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7052,6 +7402,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -7117,6 +7470,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7184,6 +7540,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7251,6 +7610,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7319,6 +7681,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7386,6 +7751,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7453,6 +7821,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7520,6 +7891,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -7585,6 +7959,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -7650,6 +8027,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -7715,6 +8095,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7782,6 +8165,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7849,6 +8235,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -7914,6 +8303,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -7981,6 +8373,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8048,6 +8443,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8115,6 +8513,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8182,6 +8583,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8249,6 +8653,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8316,6 +8723,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: borracha (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8385,6 +8795,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8450,6 +8863,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8516,6 +8932,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8581,6 +9000,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8646,6 +9068,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8711,6 +9136,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8776,6 +9204,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -8843,6 +9274,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8908,6 +9342,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -8973,6 +9410,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9038,6 +9478,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9103,6 +9546,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9168,6 +9614,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9233,6 +9682,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -9300,6 +9752,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9365,6 +9820,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9430,6 +9888,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -9500,6 +9961,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9567,6 +10031,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9634,6 +10101,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9701,6 +10171,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9768,6 +10241,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9835,6 +10311,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -9902,6 +10381,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -9971,6 +10453,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -10038,6 +10523,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -10105,6 +10593,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -10174,6 +10665,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -10243,6 +10737,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -10310,6 +10807,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0
@@ -10377,6 +10877,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 2.0
@@ -10446,6 +10949,9 @@ entries:
     location: null
   anomalies: []
   hammer_tip: metal (inferido do contato)
+  force_channel: 2
+  force_scale_to_N: 1.0
+  force_note: null
   impact_location: sem ponto específico (pesquisador)
   quality:
     n_pulses: 1.0

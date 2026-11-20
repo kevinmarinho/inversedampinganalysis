@@ -54,7 +54,10 @@ class Entry(BaseModel):
     duration_s: float
     channels: list[Channel]
     anomalies: list[str] = Field(default_factory=list)
-    hammer_tip: str | None = None  # TODO researcher
+    hammer_tip: str | None = None  # inferred from the contact time (Phase 1)
+    force_channel: int | None = None  # channel index to use as force (D1.4)
+    force_scale_to_N: float | None = None  # multiply that channel by this to get N
+    force_note: str | None = None
     impact_location: str | None = None  # TODO researcher
     quality: dict = Field(default_factory=dict)
     file_class: FileClass = "pendente"
@@ -128,6 +131,7 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
     for k, (name, unit) in enumerate(zip(head["names"], head["units"], strict=True)):
         role = fcfg["channels"][k]
         sensor = hw.get(role) if role in ("accelerometer", "hammer") else None
+        unknown_sens = k in fcfg.get("sensitivity_unknown", [])
         chans.append(
             Channel(
                 index=k,
@@ -136,9 +140,9 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
                 quantity_header=unit_info(unit)[2],
                 role=role,
                 sensor_model=sensor["model"] if sensor else None,
-                sensitivity_mv=sensor["sensitivity_mv"] if sensor else None,
+                sensitivity_mv=sensor["sensitivity_mv"] if sensor and not unknown_sens else None,
                 full_scale=(hw["daq"]["range_v"] / (sensor["sensitivity_mv"] * 1e-3))
-                if sensor
+                if sensor and not unknown_sens
                 else None,
                 location=(
                     sensor_loc[k] if role == "accelerometer" and sensor_loc[k] != "TODO" else None
@@ -164,6 +168,12 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
         channels=chans,
         anomalies=list(rec.anomalies),
         impact_location=impact_loc,
+        # 2nd campaign: one hammer channel, already in N. 1st campaign: two copies of the
+        # hammer signal (D1.4) -> chosen later by dampid.eda.c9.assign_force_channels.
+        force_channel=(
+            next(c.index for c in chans if c.role == "hammer") if fcfg["campaign"] == 2 else None
+        ),
+        force_scale_to_N=1.0 if fcfg["campaign"] == 2 else None,
     )
 
 

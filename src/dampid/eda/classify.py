@@ -25,17 +25,6 @@ def classify(
     out = []
     for i, r in survey.iterrows():
         flags, reasons, ch_status = [], [], {}
-        if r.campaign == 1:
-            out.append(
-                {
-                    "id": r.id,
-                    "file_class": "pendente",
-                    "reasons": ["C9: identidade/escala do canal de força não resolvida"],
-                    "flags": [],
-                    "channel_status": {},
-                }
-            )
-            continue
         multi = r.second_pulse_ratio >= rules["multi_impact_ratio"] or r.pulses_before_main > 0
         atyp = abs(r.F_width_ms / med_w[i] - 1) > rules["atypical_width_rel"]
         if multi:
@@ -46,6 +35,8 @@ def classify(
             )
         for ch in (0, 1):
             tag = f"a{ch}"
+            if f"{tag}_n_clipped" not in r or pd.isna(r[f"{tag}_n_clipped"]):
+                continue  # channel is not an accelerometer in this campaign
             problems = []
             if r[f"{tag}_n_clipped"] > 0:
                 ch_status[ch] = "saturado"
@@ -67,22 +58,35 @@ def classify(
         pre_db = 20 * np.log10(r.a0_pre_rms / noise_floor_g)
         if pre_db > rules["pre_vibration_db"]:
             flags.append(f"já vibrava antes do golpe ({pre_db:.0f} dB acima do piso)")
+        if r.campaign == 1:
+            flags.append(rules["campaign1_note"])
         usable = [c for c, s in ch_status.items() if s != "saturado"]
         if not usable:
             cls = "descartar"
-            reasons.append("os dois acelerômetros saturaram (±50 g)")
-        elif all(s == "ok" for s in ch_status.values()) and not multi and not atyp:
+            reasons.append(
+                "os dois acelerômetros saturaram (±50 g)"
+                if len(ch_status) > 1
+                else "o acelerômetro saturou (±50 g)"
+            )
+        elif (
+            all(s == "ok" for s in ch_status.values())
+            and not multi
+            and not atyp
+            and r.campaign != 1
+        ):
             cls = "ouro"
         else:
             cls = "utilizável"
             for c, s in ch_status.items():
-                if s == "saturado":
+                if s == "saturado" and len(ch_status) > 1:
                     reasons.append(f"Acel {c + 1} saturado — usar só Acel {2 - c}")
             if multi:
                 reasons.append("impacto múltiplo")
             if atyp:
                 reasons.append("golpe atípico")
             reasons += [f for f in flags if "destoa" in f or "repetível" in f]
+            if r.campaign == 1:
+                reasons.append(rules["campaign1_note"])
         out.append(
             {
                 "id": r.id,

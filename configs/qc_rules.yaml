@@ -25,3 +25,7 @@ pre_vibration_db: 25.0         # RMS antes do golpe > 25 dB acima do piso => já
 # também depende da rigidez local da peça, por isso há uma faixa "indeterminada".
 tip_metal_max_ms: 3.5
 tip_rubber_min_ms: 5.0
+
+# 1ª campanha (D1.4): no máximo "utilizável" — 1 registro por configuração (sem coerência
+# entre repetições), engaste nas garras da máquina de ensaio, escala da força ±15 %.
+campaign1_note: "1ª campanha: 1 registro por configuração; escala da força ±15 % (D1.4)"
