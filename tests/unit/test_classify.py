@@ -65,3 +65,12 @@ def test_unrepeatable_configuration_demotes_channel():
     out = classify(sv, cons, {("C", 0): 0.4, ("C", 1): 0.95}, RULES, noise_floor_g=5e-4)
     assert out.loc[0, "file_class"] == "utilizável"
     assert out.loc[0, "channel_status"] == {0: "restrito", 1: "ok"}
+
+
+def test_infer_tip_thresholds():
+    from dampid.eda.classify import infer_tip
+
+    r = {"tip_metal_max_ms": 3.5, "tip_rubber_min_ms": 5.0}
+    assert infer_tip(2.1, r).startswith("metal")
+    assert infer_tip(6.5, r).startswith("borracha")
+    assert infer_tip(4.2, r) == "indeterminado"

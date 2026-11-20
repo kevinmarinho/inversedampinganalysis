@@ -116,6 +116,14 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
         config_id = f"C1_{specimen}_{'CF' if boundary == 'clamped-free' else 'CC'}_m{hpos}_a{apos}"
         rep = 1
     spec = sources["specimens"].get(specimen, {}) if specimen else {}
+    setup = fcfg.get("setup", {}) or {}
+    if fcfg["campaign"] == 1 and boundary in setup:
+        s1 = setup[boundary]
+        sensor_loc = [s1.get("accel"), None, None]
+        impact_loc = s1.get("impact")
+    else:
+        sensor_loc = list(setup.get("sensors", [])) + [None] * 3
+        impact_loc = setup.get("impact")
     chans = []
     for k, (name, unit) in enumerate(zip(head["names"], head["units"], strict=True)):
         role = fcfg["channels"][k]
@@ -132,6 +140,9 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
                 full_scale=(hw["daq"]["range_v"] / (sensor["sensitivity_mv"] * 1e-3))
                 if sensor
                 else None,
+                location=(
+                    sensor_loc[k] if role == "accelerometer" and sensor_loc[k] != "TODO" else None
+                ),
             )
         )
     return Entry(
@@ -152,6 +163,7 @@ def build_entry(path: Path, raw_dir: Path, sources: dict) -> Entry:
         duration_s=rec.duration_s,
         channels=chans,
         anomalies=list(rec.anomalies),
+        impact_location=impact_loc,
     )
 
 

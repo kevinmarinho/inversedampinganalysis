@@ -124,3 +124,56 @@ def point_mass_frequency_factor(positions_over_L, masses, m_beam: float, bc: str
     """
     phi = mode_shape(np.asarray(positions_over_L), bc, n)
     return 1.0 / np.sqrt(1.0 + np.sum(np.asarray(masses) * phi**2) / m_beam)
+
+
+def free_free_with_point_masses(
+    L: float, m_beam: float, EI: float, positions_over_L, masses, n_elastic: int = 6
+):
+    """Free-free Euler–Bernoulli beam carrying point masses, by Rayleigh–Ritz on the bare
+    beam's own modes (rigid translation, rigid rotation and `n_elastic` bending modes).
+
+    Basis: psi_0 = 1, psi_1 = sqrt(3)(2 xi - 1) (rotation about the centre), psi_r = mode_shape
+    (all normalised to (1/L) int psi^2 dx = 1, so the bare generalised mass is m_beam * I).
+    Point masses add sum_i m_i psi(x_i) psi(x_i)^T to the mass matrix (rotary inertia of the
+    masses neglected). Returns (f_hz, Phi_at(xi) callable) with Phi mass-normalised in kg^-1/2:
+    the accelerance between xi_f and xi_r is
+        A(w) = sum_r -w^2 phi_r(xi_f) phi_r(xi_r) / (w_r^2 - w^2 + 2 i zeta w_r w)
+    (rigid modes have w_r = 0). Audit/EDA-level model, not the Phase-4 FE.
+    """
+    pos = np.atleast_1d(np.asarray(positions_over_L, dtype=float))
+    ms = np.atleast_1d(np.asarray(masses, dtype=float))
+
+    def basis(xi):
+        xi = np.atleast_1d(np.asarray(xi, dtype=float))
+        rows = [np.ones_like(xi), np.sqrt(3.0) * (2 * xi - 1)]
+        rows += [mode_shape(xi, "free-free", r) for r in range(1, n_elastic + 1)]
+        return np.array(rows)  # (n_basis, n_points)
+
+    bl = bending_roots("free-free", n_elastic)
+    w_bare = bl**2 / L**2 * np.sqrt(EI / (m_beam / L))
+    nb = n_elastic + 2
+    M = m_beam * np.eye(nb)
+    K = np.zeros((nb, nb))
+    K[2:, 2:] = np.diag(m_beam * w_bare**2)
+    B = basis(pos)
+    M = M + (B * ms) @ B.T
+    import scipy.linalg as sla
+
+    w2, Q = sla.eigh(K, M)  # Q^T M Q = I
+    w = np.sqrt(np.clip(w2, 0.0, None))
+
+    def phi_at(xi):
+        return basis(xi).T @ Q  # (n_points, n_modes), units kg^-1/2
+
+    return w / (2 * np.pi), phi_at
+
+
+def accelerance(f_hz, f_modes_hz, phi_f, phi_r, zeta=1e-3):
+    """A(f) = sum_r -w^2 phi_r(f) phi_r(r) / (w_r^2 - w^2 + 2 i zeta w_r w)  [(m/s^2)/N]."""
+    w = 2 * np.pi * np.asarray(f_hz, dtype=float)[:, None]
+    wr = 2 * np.pi * np.asarray(f_modes_hz)[None, :]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        terms = -(w**2) * (phi_f * phi_r)[None, :] / (wr**2 - w**2 + 2j * zeta * wr * w)
+    # 0/0 at f = 0 for rigid modes: the limit is the mass-line value +phi_f phi_r
+    terms = np.where(np.isnan(terms), (phi_f * phi_r)[None, :] + 0j, terms)
+    return terms.sum(axis=1)

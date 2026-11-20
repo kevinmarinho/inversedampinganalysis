@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from dampid.eda.classify import classify
+from dampid.eda.classify import classify, infer_tip
 from dampid.io.catalog import load_catalog, save_catalog
 
 rules = yaml.safe_load(open("configs/qc_rules.yaml", encoding="utf-8"))
@@ -85,9 +85,13 @@ for e in cat.entries:
     e.quality = {k: (None if pd.isna(r[k]) else round(float(r[k]), 4)) for k in keep}
     e.quality["channel_status"] = {f"Acel {k + 1}": v for k, v in clsi.loc[e.id, "channel_status"].items()}
     e.quality["flags"] = list(clsi.loc[e.id, "flags"])
+    e.hammer_tip = infer_tip(float(r["F_width_ms"]), rules)
     e.file_class = clsi.loc[e.id, "file_class"]
     e.class_reasons = list(clsi.loc[e.id, "reasons"])
 save_catalog(cat, "data/catalog.yaml")
+tips = pd.crosstab(pd.Series([e.config_id if e.campaign == 2 else "1ª campanha" for e in cat.entries], name="config"),
+                   pd.Series([e.hammer_tip for e in cat.entries], name="ponteira"))
+print(tips.to_string())
 cat2 = load_catalog("data/catalog.yaml")
 print("catálogo salvo e revalidado:", cat2.n_files, "entradas;",
       dict(pd.Series([e.file_class for e in cat2.entries]).value_counts()))

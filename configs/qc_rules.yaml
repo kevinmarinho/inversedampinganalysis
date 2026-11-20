@@ -18,3 +18,10 @@ pre_vibration_db: 25.0         # RMS antes do golpe > 25 dB acima do piso => já
 #               sinalizações (o pipeline da Fase 2 trata ou exclui por canal).
 #  descartar  : nenhum canal de aceleração sem saturação (FRF inválida).
 #  pendente   : 1ª campanha — escala/identidade do canal de força não resolvida (C9).
+
+# Ponteira do martelo (pesquisador, 2026-11-20: "metal e borracha, conforme o amortecimento do
+# material"; registro por ensaio não existe). Inferida pelo tempo de contato do pulso principal:
+# ponteira macia (borracha) -> contato longo; metálica -> contato curto. O tempo de contato
+# também depende da rigidez local da peça, por isso há uma faixa "indeterminada".
+tip_metal_max_ms: 3.5
+tip_rubber_min_ms: 5.0

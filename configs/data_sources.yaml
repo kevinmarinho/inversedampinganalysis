@@ -11,22 +11,22 @@ hardware:
                   source: "sensibilidade: .task (valor configurado, nominal); faixa ±50 g e massa 5,8 g: datasheet PCB 352C33 rev. H"}
   hammer: {model: "PCB 086C03", sensitivity_mv: 2.25, unit: N, range: 2224.0,
            source: "sensibilidade: .task (nominal); faixa ±2224 N pk: pcb.com, modelo 086C03"}
-  calibration_certificates: TODO   # certificados individuais, se existirem
+  calibration_certificates: "não existem; sensores calibrados — usar as sensibilidades nominais (pesquisador, 2026-11-20)"
 
 specimens:
   ACO:
-    material: aço (liga TODO)
+    material: aço (liga não identificável; irrelevante no momento — pesquisador)
     geometry: {type: rectangular_bar, L_mm: 314.0, b_mm: 51.0, h_mm: 2.90,
-               source: "Tabela 1 do TCC (pesquisador); legado usa 285 x 51,25 x 3,04 mm (comprimento livre?)"}
+               source: "Tabela 1 do TCC — adotada pelo pesquisador (D1.3); legado usava 285 x 51,25 x 3,04 mm"}
     density_nominal: {value: 7850.0, range: [7750.0, 8050.0], source: "faixa típica de aços carbono/inox; liga TODO"}
   AL:
-    material: alumínio (liga TODO)
+    material: alumínio (liga não identificável; irrelevante no momento — pesquisador)
     geometry: {type: rectangular_bar, L_mm: 304.0, b_mm: 50.8, h_mm: 3.20,
-               source: "Tabela 1 do TCC; legado usa 271 x 50,95 x 3,16 mm"}
+               source: "Tabela 1 do TCC — adotada pelo pesquisador (D1.3); legado usava 271 x 50,95 x 3,16 mm"}
     density_nominal: {value: 2700.0, range: [2660.0, 2810.0], source: "faixa típica de ligas de Al (1xxx a 7xxx); liga TODO"}
   ACRILICO:
     material: PMMA (acrílico)
-    geometry: {type: rectangular_bar, L_mm: 301.0, b_mm: 49.4, h_mm: 3.00, source: "Tabela 1 do TCC"}
+    geometry: {type: rectangular_bar, L_mm: 301.0, b_mm: 49.4, h_mm: 3.00, source: "Tabela 1 do TCC (D1.3)"}
     density_nominal: {value: 1190.0, range: [1170.0, 1200.0], source: "prompt master §5.1 (C8): PMMA 1180–1200 kg/m³"}
   FIB_CARBONO:
     material: compósito de fibra de carbono (tubo; layup TODO)
@@ -49,6 +49,11 @@ folders:
     specimen: ACO
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup:
+      sensors: ["perto de uma extremidade, face superior, eixo normal à face",
+                "perto da outra extremidade, face superior, eixo normal à face"]
+      sensors_note: "foto LL_barra_montagem.jpg (qual sensor é Acel 1 não está identificado)"
+      impact: "sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1 ≈ 1, Fase 1 adendo)"
     note: suspensão por barbantes
   Al:
     config_id: LL_AL
@@ -56,24 +61,36 @@ folders:
     specimen: AL
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup:
+      sensors: ["perto de uma extremidade, face superior, eixo normal à face",
+                "perto da outra extremidade, face superior, eixo normal à face"]
+      sensors_note: "foto LL_barra_montagem.jpg (qual sensor é Acel 1 não está identificado)"
+      impact: "sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1 ≈ 1, Fase 1 adendo)"
   ACRILICO:
     config_id: LL_ACRILICO
     campaign: 2
     specimen: ACRILICO
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup:
+      sensors: ["perto de uma extremidade, face superior, eixo normal à face",
+                "perto da outra extremidade, face superior, eixo normal à face"]
+      sensors_note: "foto LL_barra_montagem.jpg (qual sensor é Acel 1 não está identificado)"
+      impact: "sem ponto específico (pesquisador); os dados indicam perto do meio do comprimento (H2/H1 ≈ 1, Fase 1 adendo)"
   FIBRA_CARBONO:
     config_id: LL_FIB_CARBONO
     campaign: 2
     specimen: FIB_CARBONO
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: [TODO, TODO], impact: "sem ponto específico (pesquisador)"}
   Fibra vidro_ alinhado:
     config_id: LL_FIB_VIDRO_0
     campaign: 2
     specimen: FIB_VIDRO
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: ["mesma orientação (0°)", "mesma orientação (0°)"], impact: "variou entre repetições e o tubo girava um pouco na suspensão (pesquisador)"}
     note: sensores alinhados (0°) — "Fibra vidro_ alinhado"
   Fibra vidro_90:
     config_id: LL_FIB_VIDRO_90
@@ -81,6 +98,7 @@ folders:
     specimen: FIB_VIDRO
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: ["eixos a 90° entre si", "eixos a 90° entre si"], impact: "sem ponto específico (pesquisador)"}
     note: sensores a 90° entre si
   PLA_CAVERNA:
     config_id: LL_PLA_CAVERNA
@@ -88,12 +106,14 @@ folders:
     specimen: PLA_CAVERNA
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: [TODO, TODO], impact: "sem ponto específico (pesquisador)"}
   PLA_LONGARINA:
     config_id: LL_PLA_LONGARINA_0
     campaign: 2
     specimen: PLA_LONGARINA
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: ["mesma orientação (0°)", "mesma orientação (0°)"], impact: "sem ponto específico (pesquisador)"}
     note: configuração 1 da longarina (o que difere da _90 é TODO)
   PLA_LONGARINA_90:
     config_id: LL_PLA_LONGARINA_90
@@ -101,6 +121,7 @@ folders:
     specimen: PLA_LONGARINA
     boundary: free-free
     channels: [accelerometer, accelerometer, hammer]
+    setup: {sensors: ["face superior de uma extremidade, eixo vertical", "alma lateral da outra extremidade, eixo horizontal (90°)"], sensors_note: "foto LL_PLA_LONGARINA_90_montagem.jpg; atribuição Acel 1/2 inferida pelo nível de sinal (Acel 2 ~10x menor, Fase 1)", impact: "sem ponto específico (pesquisador)"}
     note: configuração 2 da longarina ("90")
   exp_5:
     config_id: from_filename   # <Material>_<engastado_livre|biengastado>_m<pos>_a<pos>
@@ -108,4 +129,9 @@ folders:
     channels: [accelerometer, unknown, unknown]   # C9: Input 1 e Input 2 não resolvidos
     note: >-
       1ª campanha (jan/2023), cabeçalhos genéricos Input 0/1/2. Input 0 = acelerômetro
-      (rótulo g); Input 1 [g] e Input 2 [N] carregam pulsos de força parecidos (C9).
+      (rótulo g); Input 1 [g] e Input 2 [N] carregam o mesmo pulso de força, com razão
+      In1/In2 ≈ 1,12–1,20 plana em 5–300 Hz (C9, adendo da Fase 1).
+    setup:
+      clamped-clamped: {accel: "centro (L/2)", impact: "L/4 (pesquisador); nome do arquivo diz m<centro|foracentro>"}
+      clamped-free: {accel: "ponta livre", impact: "L/4, do lado do acelerômetro (pesquisador); nome do arquivo diz m<ponta|centro>"}
+      photos: ["C1_aco_biengastado.png", "C1_aco_engastado_livre.png"]

@@ -10,19 +10,21 @@
 | 1.3b Aceleração | `04_qualidade_resposta.ipynb` | `04_qualidade_resposta.md` |
 | 1.4 Consistência | `05_consistencia.ipynb` | `05_consistencia.md` |
 | 1.5 Classificação | `06_classificacao.ipynb` | `06_classificacao.md` |
+| 1.6 Adendo: montagem, ponteiras, linha de massa, C9 | `07_adendo_montagem.ipynb` | `07_adendo_montagem.md` |
 
-Código novo: `dampid.io` (leitor, unidades, catálogo), `dampid.eda` (qualidade, levantamento, consistência, classificação); 27 testes (+1 pulado sem SymPy). Decisões: D1.1, D1.2.
+Código novo: `dampid.io` (leitor, unidades, catálogo), `dampid.eda` (qualidade, levantamento, consistência, classificação); 27 testes (+1 pulado sem SymPy). Decisões: D1.1, D1.2, D1.3 (dimensões = Tabela 1 do TCC); D1.4 (canal de força da 1ª campanha) aguardando o pesquisador.
 Regenerar tudo, em ordem: `python scripts/build_notebooks.py fase1`. O 01 recria o catálogo, o 02 gera `data/processed/fase1_survey.csv`, o 04 e o 05 geram as tabelas por registro e o 06 classifica e atualiza o catálogo.
 
 ## Resultados principais
 1. **Catálogo completo**: 156 arquivos em `data/catalog.yaml`, validado por pydantic, com hash, metadados, qualidade e classe. Unidades `g, g, N` e fs = 25 600 Hz em todos.
 2. **Unidades confirmadas** para o conjunto de desenvolvimento por três caminhos físicos: piso de ruído igual entre sessões, velocidade do martelo de 0,07–0,55 m/s e linha de massa com κ ≈ 1,5–2,4 nas duas barras metálicas.
-3. **C9 continua aberto.** A hipótese "mesmo sinal nas duas entradas" foi rejeitada (razão In1/In2 varia 23 %); a escala de força da 1ª campanha segue desconhecida → `exp_5/` pendente.
+3. **C9 resolvido em parte (adendo):** Input 1 e Input 2 da 1ª campanha são a mesma força. |In1/In2| é plana em 5–300 Hz e vale 1,13–1,20; Input 0 é a resposta. Para ζ, tanto faz qual dos dois se usa; a escala absoluta tem ~15 % de incerteza (D1.4).
 4. **Saturação dos acelerômetros:** 16/16 na fibra de carbono, 5/16 no acrílico, 1/16 no aço e no Al. A fibra de carbono está perdida para FRF.
 5. **Banda útil da força** f₋₁₀ ≈ 150–190 Hz nos metais e no FV: só o 1º modo elástico (152–158 Hz) fica bem excitado. Longarinas e acrílico têm banda mais larga (460–630 Hz).
 6. **Aço**: muito pouco amortecido (ζ ~ 7·10⁻⁴ na estimativa grosseira); truncado em 5 s (decai só 25 dB) e já vibrando antes de cada golpe → D2.2.
-7. **Repetibilidade**: aço e Al excelentes (γ² ≥ 0,99; f₁ ± 0,03 % e ± 0,23 %). FV 0° não repetível (ponto/direção do golpe ou rotação do tubo variando).
-8. **Classificação (D1.2)**: 52 ouro, 69 utilizável, 23 descartar, 12 pendente. Conjunto de desenvolvimento (D1.1): **aço 14 ouro, Al 13 ouro**.
+7. **Montagem real das barras livre-livre:** sensores perto das extremidades, impacto perto do meio (inferido; o pesquisador não fixou o ponto). O nível medido fica 1,2–1,4× acima do modelo com massa nominal → pesar os espécimes.
+8. **Repetibilidade**: aço e Al excelentes (γ² ≥ 0,99; f₁ ± 0,03 % e ± 0,23 %). FV 0° não repetível (ponto/direção do golpe ou rotação do tubo variando).
+9. **Classificação (D1.2)**: 52 ouro, 69 utilizável, 23 descartar, 12 pendente. Conjunto de desenvolvimento (D1.1): **aço 14 ouro, Al 13 ouro**.
 
 ## Gate da Fase 1
 > "Catálogo completo e unidades confirmadas para o conjunto de desenvolvimento."
@@ -32,17 +34,15 @@ Regenerar tudo, em ordem: `python scripts/build_notebooks.py fase1`. O 01 recria
 - **Aguardando a aprovação do pesquisador.** O trabalho está no branch `fase-1` do GitHub. O merge na `main` acontece depois da aprovação.
 
 ## Medições físicas e informações pendentes (pesquisador)
-Ordem = impacto no projeto.
-1. **Posições** de cada acelerômetro e do ponto de impacto, por espécime, e direção do golpe (fotos da montagem bastam). Explicam κ ≈ 2 e H₂/H₁ ≈ 1 nas barras; necessárias na Fase 4.
-2. **Massas**: de cada espécime (balança de 0,01 g) e de um conjunto sensor + base PLA + cera + trecho de cabo. Sem elas, a Fase 5 usa só o prior nominal (§2.6).
-3. **Dimensões medidas** (paquímetro, vários pontos) do aço e do Al. A Tabela 1 do TCC e o código legado divergem (I14).
-4. **Ponteira do martelo** por espécime. Os contatos de 6 ms, 3 ms e 2 ms sugerem pelo menos duas ponteiras.
-5. **FV alinhado (0°)**: o golpe/ponto de impacto mudou entre repetições? O tubo podia girar na suspensão?
-6. **Fibra de carbono**: dimensões (comprimento, diâmetros, espessura, layup). Dá para repetir o ensaio com golpe mais fraco/ponteira macia?
-7. **PLA**: o que diferencia `PLA_LONGARINA` de `PLA_LONGARINA_90`? Cotas e parâmetros de impressão (preenchimento, orientação) da caverna e da longarina.
-8. **FV**: espessura de parede e layup do tubo.
-9. **C9**: o que estava ligado em cada entrada do NI 9234 na 1ª campanha (jan/2023), com qual sensibilidade e por que o Input 2 do aço engaste-livre está sem sinal.
-10. Ligas exatas do aço e do Al; certificados de calibração dos sensores, se existirem.
+Respondidas em 2026-11-20 (registradas no catálogo e em `configs/data_sources.yaml`): posições e orientação dos sensores, ponto de impacto (livre-livre: sem ponto fixo; 1ª campanha: L/4), dimensões (Tabela 1), ponteiras (metal/borracha → inferidas pelo contato), FV alinhado (golpe e rotação variaram), longarina 0/90 (orientação dos sensores), ligas e certificados (não aplicáveis; sensibilidades nominais).
+
+Ainda pendentes:
+1. **Massas** de cada espécime e de um conjunto sensor + base PLA + cera + cabo. É o item de maior impacto: decide se a diferença de 1,2–1,4× na linha de massa vem da massa ou das sensibilidades.
+2. **D1.4:** qual canal usar como força na 1ª campanha (ver a figura `figs/07_adendo_montagem_fig02.png`).
+3. Posição do impacto **por arquivo** da 1ª campanha (os nomes `mcentro`/`mponta`/`mforacentro` não batem todos com "L/4") e comprimento livre no engaste.
+4. Fibra de carbono: dimensões e layup; dá para repetir sem saturar?
+5. Tubo de FV: espessura de parede e layup. PLA: cotas e parâmetros de impressão.
+6. Qual acelerômetro (1 ou 2) está em cada extremidade nas barras (só importa se a simetria for quebrada).
 
 ## O que muda nas próximas fases
 - **Fase 2** lê `file_class` e `quality.channel_status` do catálogo (canais saturados nunca entram). D2.2 (janela exponencial) é obrigatória para o aço. D2.3 (banda útil) parte de f₋₁₀ por configuração.

@@ -93,3 +93,17 @@ def classify(
             }
         )
     return pd.DataFrame(out)
+
+
+def infer_tip(width_ms: float, rules: dict) -> str:
+    """Hammer tip inferred from the contact time (time above 10 % of the peak).
+
+    Hertzian contact: a softer tip (rubber) gives a longer contact than a metal tip on the
+    same structure. The local stiffness of the specimen also matters, so contact times in
+    between the two thresholds are left undetermined.
+    """
+    if width_ms <= rules["tip_metal_max_ms"]:
+        return "metal (inferido do contato)"
+    if width_ms >= rules["tip_rubber_min_ms"]:
+        return "borracha (inferido do contato)"
+    return "indeterminado"

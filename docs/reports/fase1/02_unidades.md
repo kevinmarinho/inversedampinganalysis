@@ -33,7 +33,7 @@ As sessões de 28/11 (fibra de carbono, PLA) não têm `.task`. O ruído igual s
 **4. Sinal da linha de massa.** Re(a/F) < 0 em aço, Al, FV 90°, PLA caverna e longarinas, e > 0 em acrílico, fibra de carbono e FV 0°. O sinal depende da geometria (x_f·x_r) e da orientação do sensor. É informação sobre a montagem para conferir com as fotos, não uma conclusão.
 
 **5. C9 (1ª campanha).** Input 1 [g] e Input 2 [N] têm pulsos de **mesma forma** (correlação 0,984–0,997, sem defasagem). A razão In1/In2, porém, **varia 23 %** (1,07–1,31): fica em ~1,07–1,16 nos biengastados e em ~1,27–1,31 nos engaste-livre. No aço engaste-livre, o Input 2 só tem ruído (pico 4–6 σ).
-- **H-a (mesmo sinal ligado nas duas entradas): rejeitada.** Ela exigiria correlação ≈ 1,000 e razão constante.
+- ~~H-a (mesmo sinal ligado nas duas entradas): rejeitada.~~ **Revisto no adendo (relatório 07):** no domínio da frequência, |In1/In2| é plana (1,125–1,198) em 5–300 Hz. Os dois canais carregam a mesma força; a razão de picos no tempo era distorcida pela deriva de base do Input 1.
 - **H-b (acelerômetro no martelo + célula de força) e H-c (dois transdutores de força independentes): continuam abertas.** Em H-b, a massa implícita do martelo seria 78–96 g, menor que os 160 g do catálogo e variando com a montagem.
 - A escala de força da 1ª campanha **continua desconhecida** → `exp_5/` segue "pendente" (regra do prompt master §13).
 - O Input 0 da 1ª campanha satura (≥ 49 g) em `Acrilico_engastado_livre_mponta` e `Al_engastado_livre_mcentro`.
