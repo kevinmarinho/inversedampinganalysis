@@ -55,12 +55,16 @@
 
 O pesquisador aprovou o gate da Fase 1; `fase-1` foi incorporado à `main` (merge 0eff0e0). Ele enviou um .zip com dados de controle externo, mas o arquivo não chegou à sessão (nenhum anexo novo) → pedido de reenvio. A Fase 2 começa no branch `fase-2`.
 
+## 2026-11-20 (noite) — Fase 2: módulo de sinais e base UFRGS
+
+O pesquisador escolheu a base UFRGS (D1.5 = B) e aprovou D2.1–D2.4. Módulo `signal/` (janelas, H1/H2, coerência, banda útil, pipeline) e `io/processed.py` com testes sintéticos (commit cd49bdc em `fase-2`). Leitor `io/mat_daq.py` para os `.daq` da UFRGS, conferido contra `Leituras.dat` (50/50 medições, erro = arredondamento da impressão). Port do `processamento.m` reproduz a tabela publicada (f ≤ 0,02 %; ζ modos 2–4 ≤ 4 %; modo 1 sensível ao envelope). **Achado:** a base não tem canal de força (descrição citava martelo) → D1.5 corrigida; o pesquisador pediu outra base com força medida (D1.6). Relatório: `docs/reports/fase2/01_controle_ufrgs.md`.
+
 ---
 
 ## Estado atual (§14 do prompt master)
 
-- **Fase atual:** 2 — pipeline de processamento de sinais (plano apresentado, aguardando aprovação). Gate da Fase 1 aprovado em 2026-11-20.
-- **Última decisão registrada:** D1.4 (2026-11-20): força da 1ª campanha = Input 2 (aço engaste-livre: Input 1 ÷ 1,135).
+- **Fase atual:** 2 — pipeline de sinais (D2.1–D2.4 aprovadas; módulo implementado e testado; faltam notebooks de FRF aço/Al e D2.5). Gate da Fase 1 aprovado em 2026-11-20.
+- **Última decisão registrada:** D2.4 (2026-11-20). D1.5 = UFRGS (corrigida: sem canal de força).
 - **Dados:** 156 CSVs em `data/raw/`, catalogados e classificados em `data/catalog.yaml` (52 ouro, 79 utilizável, 25 descartar).
 - **Pendências do pesquisador** (detalhes na síntese da Fase 1):
   - [ ] Massas: espécimes e um conjunto sensor + base PLA + cera + cabo
@@ -68,5 +72,5 @@ O pesquisador aprovou o gate da Fase 1; `fase-1` foi incorporado à `main` (merg
   - [ ] Fibra de carbono: dimensões/layup; repetir o ensaio sem saturar?
   - [ ] FV: espessura/layup; PLA: cotas e parâmetros de impressão
   - [ ] Copiar o `prompt_master.md` para `CLAUDE.md`; rodar `uv lock && uv sync && uv run pytest` localmente
-- **Decisão em aberto:** D1.5 (base externa de controle). Recomendação: C = placa Al de Castro (Zenodo 7758683) nas Fases 2–3 + trilho TU Delft na Fase 4, e pórtico UFRGS (Mendeley npcn4c5htt) avaliado na Fase 8. Os arquivos precisam ser anexados pelo pesquisador (rede bloqueada).
-- **Próximo passo (ao retomar):** escolha da D1.5 e aprovação do gate da Fase 1 → merge de `fase-1` na `main` → plano da Fase 2 (pipeline de sinais) com D2.1–D2.3.
+- **Decisões em aberto:** D1.6 (base externa com força medida); D2.5 (média × identificação por registro, efeito do espalhamento de frequência no Al).
+- **Próximo passo:** escolha da D1.6 → notebooks fase2/01–02 (verificação sintética; FRFs aço/Al) → D2.5 → gate da Fase 2.
