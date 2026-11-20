@@ -41,8 +41,9 @@ def test_point_mass_factor_matches_end_formula():
 def test_ritz_bare_beam_reproduces_analytic_and_rigid_body():
     L, m, EI = 0.3, 0.36, 200e9 * 0.05 * 0.003**3 / 12
     f, phi = beam.free_free_with_point_masses(L, m, EI, [0.0], [0.0])
-    ref = beam.bending_frequencies_hz(200e9, 0.05 * 0.003**3 / 12, m / (L * 0.05 * 0.003),
-                                      0.05 * 0.003, L, "free-free", 3)
+    ref = beam.bending_frequencies_hz(
+        200e9, 0.05 * 0.003**3 / 12, m / (L * 0.05 * 0.003), 0.05 * 0.003, L, "free-free", 3
+    )
     np.testing.assert_allclose(f[:2], 0.0, atol=1e-6)
     np.testing.assert_allclose(f[2:5], ref, rtol=1e-9)
     # rigid-body accelerance between centre and end: (1/m)(1 + 12 x_f x_r / L^2) = 1/m
