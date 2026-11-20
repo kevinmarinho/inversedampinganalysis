@@ -64,4 +64,6 @@
   - [ ] Fibra de carbono: dimensões/layup; repetir o ensaio sem saturar?
   - [ ] FV: espessura/layup; PLA: cotas e parâmetros de impressão
   - [ ] Copiar o `prompt_master.md` para `CLAUDE.md`; rodar `uv lock && uv sync && uv run pytest` localmente
-- **Próximo passo:** aprovação do gate da Fase 1 → merge de `fase-1` na `main` → plano da Fase 2 (pipeline de sinais) com D2.1–D2.3.
+- **Decisão em aberto:** D1.5 (base externa de controle). Recomendação: C = placa Al de Castro (Zenodo 7758683) nas Fases 2–3 + trilho TU Delft na Fase 4, e pórtico UFRGS (Mendeley npcn4c5htt) avaliado na Fase 8. Os arquivos precisam ser anexados pelo pesquisador (rede bloqueada).
+- **Processo pausado pelo pesquisador em 2026-11-20.**
+- **Próximo passo (ao retomar):** escolha da D1.5 e aprovação do gate da Fase 1 → merge de `fase-1` na `main` → plano da Fase 2 (pipeline de sinais) com D2.1–D2.3.
