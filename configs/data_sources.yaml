@@ -1,0 +1,111 @@
+# Metadados estáticos de cada pasta de dados brutos (data/raw/<pasta>).
+# Fonte de cada campo indicada em `source`. TODO = informação que só o pesquisador tem.
+# Este arquivo é a ENTRADA do catálogo; data/catalog.yaml é GERADO a partir dele
+# (dampid.io.catalog.build_catalog) e dos próprios arquivos.
+
+hardware:
+  daq: {model: "NI 9234 (cDAQ1Mod1)", range_v: 5.0, coupling: AC, ac_cutoff_hz: 0.5,
+        source: "NI-9234 Specifications (ni.com); arquivos .task do pesquisador"}
+  accelerometer: {model: "PCB 352C33", sensitivity_mv: 100.0, unit: g, range: 50.0,
+                  mass_kg: 0.0058,
+                  source: "sensibilidade: .task (valor configurado, nominal); faixa ±50 g e massa 5,8 g: datasheet PCB 352C33 rev. H"}
+  hammer: {model: "PCB 086C03", sensitivity_mv: 2.25, unit: N, range: 2224.0,
+           source: "sensibilidade: .task (nominal); faixa ±2224 N pk: pcb.com, modelo 086C03"}
+  calibration_certificates: TODO   # certificados individuais, se existirem
+
+specimens:
+  ACO:
+    material: aço (liga TODO)
+    geometry: {type: rectangular_bar, L_mm: 314.0, b_mm: 51.0, h_mm: 2.90,
+               source: "Tabela 1 do TCC (pesquisador); legado usa 285 x 51,25 x 3,04 mm (comprimento livre?)"}
+    density_nominal: {value: 7850.0, range: [7750.0, 8050.0], source: "faixa típica de aços carbono/inox; liga TODO"}
+  AL:
+    material: alumínio (liga TODO)
+    geometry: {type: rectangular_bar, L_mm: 304.0, b_mm: 50.8, h_mm: 3.20,
+               source: "Tabela 1 do TCC; legado usa 271 x 50,95 x 3,16 mm"}
+    density_nominal: {value: 2700.0, range: [2660.0, 2810.0], source: "faixa típica de ligas de Al (1xxx a 7xxx); liga TODO"}
+  ACRILICO:
+    material: PMMA (acrílico)
+    geometry: {type: rectangular_bar, L_mm: 301.0, b_mm: 49.4, h_mm: 3.00, source: "Tabela 1 do TCC"}
+    density_nominal: {value: 1190.0, range: [1170.0, 1200.0], source: "prompt master §5.1 (C8): PMMA 1180–1200 kg/m³"}
+  FIB_CARBONO:
+    material: compósito de fibra de carbono (tubo; layup TODO)
+    geometry: {type: tube, L_mm: TODO, D_mm: TODO, t_mm: TODO, source: TODO}
+  FIB_VIDRO:
+    material: compósito de fibra de vidro (tubo; layup TODO)
+    geometry: {type: tube, L_mm: 501.0, D_mm: 13.2, t_mm: TODO, source: "relatório/TCC via prompt master §2.3"}
+  PLA_CAVERNA:
+    material: PLA impresso (preenchimento/orientação TODO)
+    geometry: {type: complex, source: "desenhos nos apêndices do relatório; cotas TODO"}
+  PLA_LONGARINA:
+    material: PLA impresso (preenchimento/orientação TODO)
+    geometry: {type: complex, source: "desenhos nos apêndices do relatório; cotas TODO"}
+
+# Pastas -> configuração de ensaio
+folders:
+  AÇO:
+    config_id: LL_ACO
+    campaign: 2
+    specimen: ACO
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+    note: suspensão por barbantes
+  Al:
+    config_id: LL_AL
+    campaign: 2
+    specimen: AL
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+  ACRILICO:
+    config_id: LL_ACRILICO
+    campaign: 2
+    specimen: ACRILICO
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+  FIBRA_CARBONO:
+    config_id: LL_FIB_CARBONO
+    campaign: 2
+    specimen: FIB_CARBONO
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+  Fibra vidro_ alinhado:
+    config_id: LL_FIB_VIDRO_0
+    campaign: 2
+    specimen: FIB_VIDRO
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+    note: sensores alinhados (0°) — "Fibra vidro_ alinhado"
+  Fibra vidro_90:
+    config_id: LL_FIB_VIDRO_90
+    campaign: 2
+    specimen: FIB_VIDRO
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+    note: sensores a 90° entre si
+  PLA_CAVERNA:
+    config_id: LL_PLA_CAVERNA
+    campaign: 2
+    specimen: PLA_CAVERNA
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+  PLA_LONGARINA:
+    config_id: LL_PLA_LONGARINA_0
+    campaign: 2
+    specimen: PLA_LONGARINA
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+    note: configuração 1 da longarina (o que difere da _90 é TODO)
+  PLA_LONGARINA_90:
+    config_id: LL_PLA_LONGARINA_90
+    campaign: 2
+    specimen: PLA_LONGARINA
+    boundary: free-free
+    channels: [accelerometer, accelerometer, hammer]
+    note: configuração 2 da longarina ("90")
+  exp_5:
+    config_id: from_filename   # <Material>_<engastado_livre|biengastado>_m<pos>_a<pos>
+    campaign: 1
+    channels: [accelerometer, unknown, unknown]   # C9: Input 1 e Input 2 não resolvidos
+    note: >-
+      1ª campanha (jan/2023), cabeçalhos genéricos Input 0/1/2. Input 0 = acelerômetro
+      (rótulo g); Input 1 [g] e Input 2 [N] carregam pulsos de força parecidos (C9).
