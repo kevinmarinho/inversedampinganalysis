@@ -12,3 +12,11 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .ipynb_checkpoints/
+
+# dados externos: binários fora do git (como data/raw); versiona README e manifesto
+data/external/**/*
+!data/external/**/
+!data/external/**/README.md
+!data/external/**/MANIFEST.sha256
+!data/external/**/*.png
+!data/external/**/*.pdf
