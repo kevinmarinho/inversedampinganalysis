@@ -51,11 +51,15 @@
 
 **D1.4 (mesmo dia):** o pesquisador confirmou que o martelo foi ligado em Input 1 e Input 2 na 1ª campanha. Força = Input 2; no aço engaste-livre, Input 1 ÷ 1,135. A 1ª campanha passa de pendente para 10 utilizáveis + 2 descartados (acelerômetro saturado).
 
+## 2026-11-20 (tarde) — gate da Fase 1 aprovado
+
+O pesquisador aprovou o gate da Fase 1; `fase-1` foi incorporado à `main` (merge 0eff0e0). Ele enviou um .zip com dados de controle externo, mas o arquivo não chegou à sessão (nenhum anexo novo) → pedido de reenvio. A Fase 2 começa no branch `fase-2`.
+
 ---
 
 ## Estado atual (§14 do prompt master)
 
-- **Fase atual:** 1 — concluída, **aguardando aprovação do gate** (`docs/reports/fase1/00_sintese_fase1.md`). Branch `fase-1`.
+- **Fase atual:** 2 — pipeline de processamento de sinais (plano apresentado, aguardando aprovação). Gate da Fase 1 aprovado em 2026-11-20.
 - **Última decisão registrada:** D1.4 (2026-11-20): força da 1ª campanha = Input 2 (aço engaste-livre: Input 1 ÷ 1,135).
 - **Dados:** 156 CSVs em `data/raw/`, catalogados e classificados em `data/catalog.yaml` (52 ouro, 79 utilizável, 25 descartar).
 - **Pendências do pesquisador** (detalhes na síntese da Fase 1):
@@ -65,5 +69,4 @@
   - [ ] FV: espessura/layup; PLA: cotas e parâmetros de impressão
   - [ ] Copiar o `prompt_master.md` para `CLAUDE.md`; rodar `uv lock && uv sync && uv run pytest` localmente
 - **Decisão em aberto:** D1.5 (base externa de controle). Recomendação: C = placa Al de Castro (Zenodo 7758683) nas Fases 2–3 + trilho TU Delft na Fase 4, e pórtico UFRGS (Mendeley npcn4c5htt) avaliado na Fase 8. Os arquivos precisam ser anexados pelo pesquisador (rede bloqueada).
-- **Processo pausado pelo pesquisador em 2026-11-20.**
 - **Próximo passo (ao retomar):** escolha da D1.5 e aprovação do gate da Fase 1 → merge de `fase-1` na `main` → plano da Fase 2 (pipeline de sinais) com D2.1–D2.3.
